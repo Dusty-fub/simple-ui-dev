@@ -1,13 +1,18 @@
 <template>
-<router-link to="/doc">文档</router-link>
-<div>|</div>
-<router-link to="/">主页</router-link>
-
 <router-view />
 </template>
 
-<script>
+<script lang="ts">
+import {
+    provide,
+    ref
+} from "vue";
 export default {
     name: "App",
+
+    setup() {
+        const asideVisible = ref(false);
+        provide("asideVi", asideVisible);
+    },
 };
 </script>

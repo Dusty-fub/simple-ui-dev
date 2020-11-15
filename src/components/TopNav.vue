@@ -1,6 +1,6 @@
 <template>
 <div class="topnav">
-    <div class="logo">Logo</div>
+    <div class="logo" @click="toggleAside">Logo</div>
     <ul class="menu">
         <li>menu1</li>
         <li>menu2</li>
@@ -8,9 +8,23 @@
 </div>
 </template>
 
-<script>
+<script lang="ts">
+import {
+    inject,
+    Ref
+} from "vue";
+
 export default {
     name: "TopNav",
+    setup() {
+        const asideVi = inject < Ref < boolean >> ("asideVi");
+        const toggleAside = () => {
+            asideVi.value = !asideVi.value;
+        };
+        return {
+            toggleAside
+        };
+    },
     data() {
         return {};
     },
