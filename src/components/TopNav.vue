@@ -1,10 +1,11 @@
 <template>
 <div class="topnav">
-    <div class="logo" @click="toggleAside">Logo</div>
+    <div class="logo">Logo</div>
     <ul class="menu">
         <li>menu1</li>
         <li>menu2</li>
     </ul>
+    <span class="toggleAsideMenu" @click="toggleAside"></span>
 </div>
 </template>
 
@@ -22,7 +23,7 @@ export default {
             asideVi.value = !asideVi.value;
         };
         return {
-            toggleAside
+            toggleAside,
         };
     },
     data() {
@@ -35,8 +36,11 @@ export default {
 .topnav {
     background: pink;
     display: flex;
-
     padding: 16px;
+    position: relative;
+
+    justify-content: center;
+    align-items: center;
 
     >.logo {
         max-width: 6em;
@@ -50,6 +54,31 @@ export default {
 
         >li {
             margin: 0 1em;
+        }
+    }
+
+    >.toggleAsideMenu {
+        display: none;
+        width: 24px;
+        height: 24px;
+        background-color: red;
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    @media (max-width: 500px) {
+        >.menu {
+            display: none;
+        }
+
+        >.logo {
+            margin: 0 auto;
+        }
+
+        >.toggleAsideMenu {
+            display: inline-block;
         }
     }
 }

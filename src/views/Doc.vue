@@ -50,8 +50,6 @@ aside {
     background-color: hsl(180, 70%, 50%);
     width: 150px;
     padding: 16px;
-    position: fixed;
-    left: 0;
 
     >h2 {
         margin-bottom: 4px;
@@ -61,6 +59,11 @@ aside {
         >li {
             padding: 4px 0;
         }
+    }
+
+    @media (max-width: 500px) {
+        position: fixed;
+        left: 0;
     }
 }
 </style>
