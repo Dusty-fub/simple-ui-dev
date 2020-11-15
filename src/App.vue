@@ -1,14 +1,12 @@
 <template>
-<router-link to="/hello">hello</router-link>
+<router-link to="/doc">文档</router-link>
 <div>|</div>
-<router-link to="/">jump f</router-link>
+<router-link to="/">主页</router-link>
 
 <router-view />
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
 export default {
     name: "App",
 };
