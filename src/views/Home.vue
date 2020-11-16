@@ -1,21 +1,17 @@
 <template>
-<div>
-    <top-nav />
-    <div class="banner">
-        <h1>ui</h1>
-        <h2>一个框架</h2>
-        <p class="actions">
-            <a href="#">github</a>
-            <router-link to="/doc">开始</router-link>
-        </p>
-    </div>
+<top-nav />
+<div class="banner">
+    <h1>ui</h1>
+    <h2>一个框架</h2>
+    <p class="actions">
+        <a href="#">github</a>
+        <router-link to="/doc">开始</router-link>
+    </p>
 </div>
-<h1>home page</h1>
-<hr />
 </template>
 
 <script lang="ts">
-import TopNav from "../components/TopNav.vue";
+import TopNav from "/@/components/TopNav.vue";
 export default {
     components: {
         TopNav,
@@ -26,6 +22,7 @@ export default {
 <style lang="scss" scoped>
 .banner {
     padding: 100px 0;
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
