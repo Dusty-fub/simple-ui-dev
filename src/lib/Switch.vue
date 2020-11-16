@@ -1,58 +1,62 @@
 <template>
-<div>
-    switch component
-    <button :class="{
-        checked,
-      }" @click="checked = !checked">
-        <span></span>
+  <div>
+    <button
+      class="gulu-switch"
+      :class="{ 'gulu-checked': checkedValue }"
+      @click="toggle"
+    >
+      <span class="gulu-switchBoll"></span>
     </button>
-</div>
+  </div>
 </template>
 
 <script lang="ts">
-import {
-    ref
-} from "vue";
+import { ref } from "vue";
 export default {
-    setup() {
-        const checked = ref(false);
-        return {
-            checked,
-        };
-    },
+  props: {
+    checkedValue: Boolean,
+  },
+  setup(props, context) {
+    const toggle = () => {
+      context.emit("update:checkedValue", !props.checkedValue);
+    };
+    return { toggle };
+  },
 };
 </script>
 
-<style lang="scss" scoped>
-$h: 22px;
-$h2: $h - 4px;
+<style lang="scss">
+$h : 22px;
+$h2 : $h - 4px;
 
-button {
-    height: $h;
-    width: $h * 2;
-    border: none;
-    outline: none;
-    background-color: gray;
-    border-radius: $h/2;
-    position: relative;
+.gulu-switch {
+  height : $h;
+  width : $h * 2;
+  border : none;
+  outline : none;
+  background-color : gray;
+  border-radius : $h/2;
+  position : relative;
+  cursor : pointer;
 }
 
-span {
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    height: $h2;
-    width: $h2;
-    background-color: white;
-    border-radius: $h2/2;
-    transition: left 0.4s;
+.gulu-switchBoll {
+  position : absolute;
+  top : 2px;
+  left : 2px;
+  height : $h2;
+  width : $h2;
+  background-color : white;
+  border-radius : $h2/2;
+  transition : left .3s;
 }
 
-.checked {
-    background-color: hsl(222, 100%, 60%);
+.gulu-switch.gulu-checked {
+  background-color : hsl(222, 100%, 60%);
 
-    >span {
-        left: calc(100% - #{$h2} - 2px);
-    }
+  > .gulu-switchBoll {
+    left : calc(100% - #{$h2} - 2px);
+  }
 }
+
 </style>
