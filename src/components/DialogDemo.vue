@@ -8,7 +8,18 @@
       @dialogOk='dialogOk'
       @dialogCancel='dialogCancel'
       :closeOnClickOverlay='false'
-    ></Dialog>
+    >
+      <template v-slot:content>
+        <div>hi</div>
+        <div>hello</div>
+
+      </template>
+      <template v-slot:title>
+        <h3>
+          {{title}}
+        </h3>
+      </template>
+    </Dialog>
   </div>
 </template>
 
@@ -36,7 +47,8 @@ export default {
     const dialogCancel = () => {
       closeDialog();
     };
-    return { dialogOk, dialogCancel, visible, toggle, closeDialog };
+    const title = ref("tip");
+    return { title, dialogOk, dialogCancel, visible, toggle, closeDialog };
   },
 };
 </script>

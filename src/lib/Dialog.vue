@@ -1,26 +1,33 @@
 <template>
   <template v-if='visible'>
-    <div
-      class="gulu-dialog-overlay"
-      @click="overlayClose"
-    ></div>
-    <div class="gulu-dialog-wrapper">
-      <div class="gulu-dialog">
-        <header>标题<span
-            @click="close"
-            class="gulu-dialog-close"
-          ></span>
-        </header>
-        <main>
-          <p>first line</p>
-          <p>second line</p>
-        </main>
-        <footer>
-          <Button @click="ok">ok</Button>
-          <Button @click="cancel">cancel</Button>
-        </footer>
+    <Teleport to='body'>
+      <div
+        class="gulu-dialog-overlay"
+        @click="overlayClose"
+      ></div>
+      <div class="gulu-dialog-wrapper">
+        <div class="gulu-dialog">
+          <header>
+            <slot name='title' />
+
+            <span
+              @click="close"
+              class="gulu-dialog-close"
+            ></span>
+          </header>
+          <main>
+            <slot name='content' />
+          </main>
+          <footer>
+            <Button
+              @click="ok"
+              level="main"
+            >ok</Button>
+            <Button @click="cancel">cancel</Button>
+          </footer>
+        </div>
       </div>
-    </div>
+    </Teleport>
   </template>
 </template>
 
