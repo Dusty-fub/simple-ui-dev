@@ -9,7 +9,6 @@
         <div class="gulu-dialog">
           <header>
             <slot name='title' />
-
             <span
               @click="close"
               class="gulu-dialog-close"

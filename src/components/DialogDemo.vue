@@ -21,12 +21,17 @@
       </template>
     </Dialog>
   </div>
+  <div class="dialog">
+    <h1>示例2</h1>
+    <Button @click="showDialog">show</Button>
+  </div>
 </template>
 
 <script lang='ts'>
 import { ref } from "vue";
 import Button from "/@/lib/Button.vue";
 import Dialog from "/@/lib/Dialog.vue";
+import { openDialog } from "../lib/openDialog";
 export default {
   name: "DialogDemo",
   components: { Dialog, Button },
@@ -48,13 +53,33 @@ export default {
       closeDialog();
     };
     const title = ref("tip");
-    return { title, dialogOk, dialogCancel, visible, toggle, closeDialog };
+    const showDialog = () => {
+      openDialog({
+        title: "title",
+        content: "content",
+        ok() {
+          console.log("ok");
+        },
+        cancel() {
+          console.log("cancel");
+        },
+      });
+    };
+    return {
+      showDialog,
+      title,
+      dialogOk,
+      dialogCancel,
+      visible,
+      toggle,
+      closeDialog,
+    };
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .dialog {
-  height: 996px;
+  height: 96px;
 }
 </style>
