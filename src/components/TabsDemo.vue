@@ -2,8 +2,11 @@
   <div class="tabs">
     <h1>示例1</h1>
     <Tabs>
-      <Tab class="nav1">content 1</Tab>
-      <Tab class="nav2">content 2</Tab>
+      <Tab
+        title="nav1"
+        selected
+      >content 1</Tab>
+      <Tab title="nav2----">content 2</Tab>
     </Tabs>
   </div>
 </template>
@@ -15,6 +18,7 @@ export default {
   props: {
     msg: String,
   },
+  setup(props, ctx) {},
   components: {
     Tabs,
     Tab,

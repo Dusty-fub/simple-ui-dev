@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import Button from "./Button.vue";
 
 export default {

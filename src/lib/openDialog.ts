@@ -16,6 +16,17 @@ export const openDialog = (options) => {
         Dialog,
         {
           visible: true,
+          onCloseDialog() {
+            close();
+          },
+          onDialogOk() {
+            ok();
+            close();
+          },
+          onDialogCancel() {
+            cancel();
+            close();
+          },
         },
 
         { title: title, content }
