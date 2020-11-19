@@ -10,7 +10,7 @@ a {
   text-decoration : none;
   color : inherit;
   &:hover {
-    border-bottom : 1px solid;
+    text-decoration : underline;
     cursor : pointer;
   }
 }
@@ -28,4 +28,11 @@ body {
   height : 100%;
   display : flex;
   flex-direction : column;
+}
+.icon {
+  width : 1.5em;
+  height : 1.5em;
+  vertical-align : -.15em;
+  fill : currentColor;
+  overflow : hidden;
 }

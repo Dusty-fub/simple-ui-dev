@@ -1,5 +1,5 @@
 <template>
-  <top-nav />
+  <top-nav toggleMenuButtonVisible />
   <div class="content">
     <aside v-show="asideVi">
       <h2>组件列表</h2>
