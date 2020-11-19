@@ -6,7 +6,7 @@
         title="nav1"
         selected
       >content 1</Tab>
-      <Tab title="nav2----">content 2</Tab>
+      <Tab title="nav2----``````````````````````````">content 2</Tab>
     </Tabs>
   </div>
 </template>

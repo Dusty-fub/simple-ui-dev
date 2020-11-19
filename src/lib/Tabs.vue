@@ -10,8 +10,10 @@
         v-for='(t,index) in titles'
         :key='index'
         @click="select(t)"
-        :ref='el=>{if(el)navItems[index]=el}'
+        :ref='el=>{if(selected[index])selectedItem=el}'
       >
+        {{selected[index]}}
+
         {{t}}
       </div>
       <div
@@ -32,7 +34,7 @@
 
 <script lang='ts'>
 import Tab from "./Tab.vue";
-import { onMounted, onUpdated, reactive, ref } from "vue";
+import { onMounted, reactive, ref, nextTick } from "vue";
 export default {
   setup(props, ctx) {
     let defaults = reactive(ctx.slots.default());
@@ -58,44 +60,43 @@ export default {
     };
     let selected = reactive({ ...markSelected() });
 
-    const select = (title: string) => {
+    const select = async (title: string) => {
       delete defaults[current.value].props.selected;
       selected[current.value] = false;
-      const selectedIndex = defaults.findIndex((tag) => {
+      current.value = defaults.findIndex((tag) => {
         return tag.props.title === title;
       });
-      current.value = selectedIndex;
       defaults[current.value].props.selected = "";
       selected[current.value] = true;
+
+      await nextTick();
+      updateIndicator();
     };
 
-    const navItems = reactive<HTMLDivElement[]>([]);
+    const selectedItem = ref<HTMLDivElement>(null);
     const indicator = ref<HTMLDivElement>(null);
     const container = ref<HTMLDivElement>(null);
     const updateIndicator = () => {
-      const result = navItems.filter((div) => {
-        return div.classList.contains("gulu-tabs-nav-selected");
-      })[0];
-      const { width, left: currentLeft } = result.getBoundingClientRect();
-      indicator.value.style.width = width + "px";
+      if (selectedItem.value !== null && indicator.value !== null) {
+        const {
+          width,
+          left: currentLeft,
+        } = selectedItem.value.getBoundingClientRect();
+        const { left: containerLeft } = container.value.getBoundingClientRect();
+        const indicatorLeft = currentLeft - containerLeft;
 
-      const { left: containerLeft } = container.value.getBoundingClientRect();
-      const indicatorLeft = currentLeft - containerLeft;
-
-      indicator.value.style.left = indicatorLeft + "px";
+        indicator.value.style.width = width + "px";
+        indicator.value.style.left = indicatorLeft + "px";
+      }
     };
     onMounted(() => {
-      updateIndicator();
-    });
-
-    onUpdated(() => {
       updateIndicator();
     });
 
     return {
       container,
       indicator,
-      navItems,
+      selectedItem,
       titles,
       defaults,
       selected,
@@ -134,7 +135,8 @@ $border-color: #d9d9d9;
       left: 0;
       bottom: -1px;
       width: 100px;
-      transition: all 250ms;
+
+      transition: left 250ms;
     }
   }
   &-content {
