@@ -50,7 +50,7 @@ export default {
     TopNav,
   },
   beforeRouteEnter(to, from, next) {
-    document.title = "首页";
+    document.title = "simple ui | 首页";
     next();
   },
 };

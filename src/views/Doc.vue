@@ -55,7 +55,7 @@ export default {
     return { asideVi };
   },
   beforeRouteEnter(to, from, next) {
-    document.title = "文档";
+    document.title = "simple ui | 文档";
     next();
   },
 };

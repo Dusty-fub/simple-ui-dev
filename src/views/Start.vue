@@ -8,8 +8,9 @@
   <p>然后在你的代码中写入下面的代码</p>
   <pre><code>import {Button, Tabs, Switch, Dialog, openDialog} from "rime-simple-ui";
 import "rime-simple-ui/dist/lib/gulu.css";</code></pre>
-  就可以使用我提供的组件了。
-
+  <p>就可以使用我提供的组件了。</p>
+  <p>使用本框架前，请在css中开启 border-box</p>
+  <pre><code>*{box-sizing:border-box;}</code></pre>
   <h2>Vue 单文件组件</h2>
   <p>代码示例：</p>
   <pre><code>&lt;template&gt;
