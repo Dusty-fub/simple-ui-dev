@@ -1,4 +1,4 @@
-<template>
+<template >
   <template v-if='visible'>
     <Teleport to='body'>
       <div
@@ -30,7 +30,7 @@
   </template>
 </template>
 
-<script lang="ts">
+<script lang="ts" >
 import { computed, onMounted, ref } from "vue";
 import Button from "./Button.vue";
 

@@ -1,9 +1,28 @@
-// const { resolve } = require("path");
-// const path = require('path')
-import path from 'path';
+import path from "path";
+import fs from "fs";
+import { baseParse } from "@vue/compiler-core";
 
 export default {
+  base: "./",
+  assetsDir: "assets",
   alias: {
     "/@/": path.resolve(__dirname, "./src"),
+  },
+  vueCustomBlockTransforms: {
+    demo: (options) => {
+      const { path } = options;
+      const file = fs.readFileSync(path).toString();
+
+      const parsed = baseParse(file).children.find((n) => {
+        return n.tag === "demo";
+      });
+
+      const title = parsed.children[0].content;
+      const main = file.split(parsed.loc.source).join("").trim();
+      return `export default function (Component) {
+        Component.__sourceCode = ${JSON.stringify(main)}
+        Component.__sourceCodeTitle = ${JSON.stringify(title)}
+      }`.trim();
+    },
   },
 };

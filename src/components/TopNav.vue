@@ -46,61 +46,57 @@ export default {
       toggleAside,
     };
   },
-  data() {
-    return {};
-  },
 };
 </script>
 
 <style lang="scss" scoped>
 .topnav {
-  display : flex;
-  padding : 16px;
-  position : relative;
-  justify-content : center;
-  align-items : center;
-  background-color : hsl(90, 70%, 60%);
-  box-shadow : 0px .2px 9px hsl(90, 0%, 50%);
-  z-index : 10;
+  display: flex;
+  padding: 16px;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-color: hsl(90, 70%, 60%);
+  box-shadow: 0px 0.2px 9px hsl(90, 0%, 50%);
+  z-index: 10;
 
   > .logo {
-    max-width : 6em;
-    margin-right : auto;
+    max-width: 6em;
+    margin-right: auto;
   }
 
   > .menu {
-    display : flex;
-    white-space : nowrap;
-    flex-wrap : nowrap;
+    display: flex;
+    white-space: nowrap;
+    flex-wrap: nowrap;
 
     > li {
-      margin : 0 1em;
+      margin: 0 1em;
     }
   }
 
   > .toggleAsideMenu {
-    display : none;
-    width : 24px;
-    height : 24px;
-    position : absolute;
-    left : 16px;
-    top : 50%;
-    transform : translateY(-50%);
+    display: none;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   @media (max-width: 500px) {
     > .menu {
-      display : none;
+      display: none;
     }
 
     > .logo {
-      margin : 0 auto;
+      margin: 0 auto;
     }
 
     > .toggleAsideMenu {
-      display : inline-block;
+      display: inline-block;
     }
   }
 }
-
 </style>

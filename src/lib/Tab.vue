@@ -1,13 +1,11 @@
-<template>
+<template >
   <div>
     <slot />
   </div>
 </template>
-
-
-<script lang='ts'>
+<script >
 export default {};
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 </style>

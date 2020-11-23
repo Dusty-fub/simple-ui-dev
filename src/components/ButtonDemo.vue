@@ -1,126 +1,30 @@
 <template>
-  <div class="buttonDemo">
-    <h1>示例1</h1>
-    <div class="buttonWrap">
-      <Button
-        theme="button"
-        size="normal"
-        @click="onClick"
-        @mouseover="onMouseOver"
-        @focus="onFocus"
-      >
-        按钮
-      </Button>
-      <Button> 按钮 </Button>
-      <Button theme="link"> 按钮 </Button>
-      <Button theme="text"> 按钮 </Button>
-    </div>
-  </div>
-  <div class="buttonDemo">
-    <h1>示例2</h1>
-    <div class="buttonWrap">
-      <Button size="big">按钮</Button>
-      <Button size="normal">按钮</Button>
-      <Button size="small">按钮</Button>
-    </div>
-  </div>
-  <div class="buttonDemo">
-    <h1>示例3</h1>
-    <div class="buttonWrap">
-      <div class="buttonRow">
-        <Button level="main">主要按钮</Button>
-        <Button>普通按钮</Button>
-        <Button level="danger">危险按钮</Button>
-      </div>
-
-      <div class="buttonRow">
-        <Button
-          theme="link"
-          level="main"
-        >主要链接按钮</Button>
-        <Button theme="link">普通链接按钮</Button>
-        <Button
-          theme="link"
-          level="danger"
-        >危险链接按钮</Button>
-      </div>
-
-      <div class="buttonRow">
-        <Button
-          theme="text"
-          level="main"
-        >主要文字按钮</Button>
-        <Button theme="text">普通文字按钮</Button>
-        <Button
-          theme="text"
-          level="danger"
-        >危险文字按钮</Button>
-      </div>
-    </div>
-  </div>
-  <div class="buttonDemo">
-    <h1>示例4</h1>
-    <div class="buttonWrap">
-      <Button
-        theme='button'
-        disabled
-      >按钮</Button>
-      <Button
-        theme='link'
-        :disabled='true'
-      >按钮</Button>
-
-      <Button
-        theme='text'
-        disabled
-      >按钮</Button>
-    </div>
-  </div>
-  <div class="buttonDemo">
-    <h1>示例5</h1>
-    <div class="buttonWrap">
-      <Button loading>
-        加载中...
-      </Button>
-      <Button>
-        加载完毕
-      </Button>
-    </div>
-  </div>
+  <Demo :component="ButtonDemo1" />
+  <Demo :component="ButtonDemo2" />
+  <Demo :component="ButtonDemo3" />
+  <Demo :component="ButtonDemo4" />
+  <Demo :component="ButtonDemo5" />
 </template>
 
 <script>
-import Button from "/@/lib/Button.vue";
+import Demo from "/@/components/Demo.vue";
+import ButtonDemo1 from "/@/components/demos/Button.demo1.vue";
+import ButtonDemo2 from "/@/components/demos/Button.demo2.vue";
+import ButtonDemo3 from "/@/components/demos/Button.demo3.vue";
+import ButtonDemo4 from "/@/components/demos/Button.demo4.vue";
+import ButtonDemo5 from "/@/components/demos/Button.demo5.vue";
+
 export default {
   name: "ButtonDemo",
-  props: {
-    msg: String,
-  },
   setup() {
-    const onClick = () => {
-      alert("al");
+    return {
+      ButtonDemo1,
+      ButtonDemo2,
+      ButtonDemo3,
+      ButtonDemo4,
+      ButtonDemo5,
     };
-    return { onClick };
   },
-  components: { Button },
-  data() {
-    return {};
-  },
+  components: { Demo },
 };
 </script>
-
-<style lang="scss" scoped>
-.buttonDemo {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 30px;
-  .buttonWrap {
-    margin-top: 5px;
-    margin-left: 25px;
-    .buttonRow {
-      padding: 10px 0;
-    }
-  }
-}
-</style>

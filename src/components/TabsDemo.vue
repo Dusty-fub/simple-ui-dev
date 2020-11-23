@@ -1,33 +1,14 @@
 <template>
-  <div class="tabs">
-    <h1>示例1</h1>
-    <Tabs>
-      <Tab
-        title="nav1"
-        selected
-      >content 1</Tab>
-      <Tab title="nav2----``````````````````````````">content 2</Tab>
-    </Tabs>
-  </div>
+  <Demo :component='TabsDemo1' />
 </template>
 
 <script lang='ts'>
-import Tabs from "/@/lib/Tabs.vue";
-import Tab from "/@/lib/Tab.vue";
+import Demo from "/@/components/Demo.vue";
+import TabsDemo1 from "/@/components/demos/Tabs.demo1.vue";
 export default {
-  props: {
-    msg: String,
+  setup() {
+    return { TabsDemo1 };
   },
-  setup(props, ctx) {},
-  components: {
-    Tabs,
-    Tab,
-  },
+  components: { Demo },
 };
 </script>
-
-<style lang="scss" scoped>
-.tabs {
-  height: 96px;
-}
-</style>

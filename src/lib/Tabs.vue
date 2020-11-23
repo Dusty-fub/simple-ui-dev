@@ -1,4 +1,4 @@
-<template>
+<template >
   <div class="gulu-tabs">
     <div
       class="gulu-tabs-nav"
@@ -12,8 +12,6 @@
         @click="select(t)"
         :ref='el=>{if(selected[index])selectedItem=el}'
       >
-        {{selected[index]}}
-
         {{t}}
       </div>
       <div
@@ -51,12 +49,16 @@ export default {
 
     let current = ref(0);
     const markSelected = () => {
-      return defaults.map((tag, index) => {
+      let hasSelected = false;
+      let s = defaults.map((tag, index) => {
         if (tag.props.hasOwnProperty("selected")) {
           current.value = index;
+          hasSelected = true;
         }
         return tag.props.hasOwnProperty("selected");
       });
+      !hasSelected && (s[0] = true);
+      return s;
     };
     let selected = reactive({ ...markSelected() });
 
