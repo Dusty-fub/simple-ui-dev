@@ -107,15 +107,15 @@ $grey : hsl(0, 0%, 50%);
   display : inline-flex;
   justify-content : center;
   align-items : center;
+  vertical-align : middle;
   white-space : nowrap;
   background-color : white;
   color : $color;
   border : 1px solid $border-color;
   border-radius : $radius;
   box-shadow : 0 1px 1 fade-out (black, .95);
-  & + & {
-    margin-left : 8px;
-  }
+  margin : 0px 8px 8px;
+
   &:hover, &:focus {
     color : $blue;
     border-color : $blue;
@@ -210,7 +210,7 @@ $grey : hsl(0, 0%, 50%);
     width : 14px;
     height : 14px;
     display : inline-block;
-    margin-right : 4px;
+    margin-right : .5em;
     border-radius : 8px;
     border-color : $blue $blue $blue transparent;
     border-style : solid;

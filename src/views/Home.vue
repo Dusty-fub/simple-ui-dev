@@ -58,65 +58,65 @@ export default {
 
 <style lang="scss" scoped>
 .wrap {
-  height: 100%;
+  height : 100%;
   .topNavAndBanner {
-    height: 50%;
-    background: linear-gradient(
-      145deg,
-      rgba(227, 255, 253, 1) 0%,
-      rgba(183, 233, 230, 1) 100%
+    height : 50%;
+    background : linear-gradient(
+    145deg,
+    rgba(227, 255, 253, 1) 0%,
+    rgba(183, 233, 230, 1) 100%
     );
-    clip-path: ellipse(80% 60% at 50% 40%);
+    clip-path : ellipse(80% 60% at 50% 40%);
   }
 
   .features {
-    height: 50%;
-    margin: 0px auto;
-    margin: 0px auto;
+    height : 50%;
+    margin : 0px auto;
+    margin : 0px auto;
 
     @media (min-width: 800px) {
-      width: 800px;
+      width : 800px;
       > ul {
         li {
-          width: 50%;
+          width : 50%;
         }
       }
     }
     @media (min-width: 1200px) {
-      width: 1200px;
+      width : 1200px;
       > ul {
         li {
-          width: 33.33%;
+          width : 33.33%;
         }
       }
     }
     > ul {
-      display: flex;
-      flex-wrap: wrap;
+      display : flex;
+      flex-wrap : wrap;
       @media (max-width: 800px) {
-        justify-content: center;
+        justify-content : center;
       }
       > li {
-        width: 400px;
-        margin: 16px 0;
-        display: grid;
-        justify-content: start;
-        align-content: space-between;
-        grid-template-areas: "icon title" "icon text";
-        grid-template-columns: 80px auto;
-        grid-template-rows: 1fr auto;
+        width : 400px;
+        margin : 16px 0;
+        display : grid;
+        justify-content : start;
+        align-content : space-between;
+        grid-template-areas : 'icon title' 'icon text';
+        grid-template-columns : 80px auto;
+        grid-template-rows : 1fr auto;
 
         > svg {
-          grid-area: icon;
-          width: 64px;
-          height: 64px;
+          grid-area : icon;
+          width : 64px;
+          height : 64px;
         }
         > h3 {
-          grid-area: title;
-          font-size: 28px;
+          grid-area : title;
+          font-size : 28px;
         }
         > p {
-          grid-area: text;
+          grid-area : text;
         }
       }
     }
@@ -124,27 +124,28 @@ export default {
 }
 
 .banner {
-  padding: 100px 0;
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  color: #28d1c9;
+  padding : 100px 0;
+  flex : 1;
+  display : flex;
+  justify-content : center;
+  align-items : center;
+  flex-direction : column;
+  color : #28D1C9;
 
   > .actions {
-    padding: 8px 0;
+    padding : 8px 0;
 
     a {
-      margin: 0 8px;
-      background-color: hsl(150, 90%, 45%);
-      color: white;
-      display: inline-block;
-      height: 40px;
-      line-height: 24px;
-      border-radius: 4px;
-      padding: 8px 24px;
+      margin : 0 8px;
+      background-color : hsl(150, 90%, 45%);
+      color : white;
+      display : inline-block;
+      height : 40px;
+      line-height : 24px;
+      border-radius : 4px;
+      padding : 8px 24px;
     }
   }
 }
+
 </style>
