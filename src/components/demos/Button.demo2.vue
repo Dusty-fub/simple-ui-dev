@@ -1,5 +1,5 @@
 <demo>
-示例2
+button 大小 示例
 </demo>
 <template>
   <Button size="big">按钮</Button>
