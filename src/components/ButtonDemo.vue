@@ -4,10 +4,15 @@
   <Demo :component="ButtonDemo3" />
   <Demo :component="ButtonDemo4" />
   <Demo :component="ButtonDemo5" />
+  <BottomNav
+    leftJump='/doc/switch'
+    rightJump='/doc/dialog'
+  />
 </template>
 
 <script>
 import Demo from "/@/components/Demo.vue";
+import BottomNav from "/@/components/BottomNav.vue";
 import ButtonDemo1 from "/@/components/demos/Button.demo1.vue";
 import ButtonDemo2 from "/@/components/demos/Button.demo2.vue";
 import ButtonDemo3 from "/@/components/demos/Button.demo3.vue";
@@ -25,6 +30,6 @@ export default {
       ButtonDemo5,
     };
   },
-  components: { Demo },
+  components: { Demo, BottomNav },
 };
 </script>
