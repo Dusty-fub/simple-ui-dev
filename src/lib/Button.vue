@@ -8,17 +8,47 @@
       v-if='loading'
       class="gulu-loadingIndicator"
     ></span>
+    <span v-if='icon&&iconPosition==="left"'>
+      <svg
+        class="icon"
+        aria-hidden="true"
+      >
+        <use :xlink:href="`#icon-${icon}`"></use>
+      </svg>
+    </span>
     <slot />
+    <span v-if='icon&&iconPosition==="right"'>
+      <svg
+        class="icon"
+        aria-hidden="true"
+      >
+        <use :xlink:href="`#icon-${icon}`"></use>
+      </svg>
+    </span>
+
   </button>
 </template>
 <script lang="ts" >
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 export default {
   inheritAttrs: false,
   props: {
     theme: {
       type: String,
       default: "button",
+    },
+    icon: {
+      type: String,
+      default: "",
+    },
+    iconPosition: {
+      type: String,
+      default: "left",
+      validator(value) {
+        if (value !== "left" && value !== "right") {
+          return false;
+        }
+      },
     },
     size: {
       type: String,
@@ -38,7 +68,16 @@ export default {
     },
   },
   setup(props, context) {
-    const { theme, size, level, disabled, loading } = props;
+    const { theme, size, level, disabled, loading, iconPosition } = props;
+
+    let leftIcon = iconPosition === "left";
+    let rightIcon = iconPosition === "right";
+
+    if (!context.slots.default) {
+      leftIcon = false;
+      rightIcon = false;
+    }
+
     const classes = computed(() => {
       return {
         [`gulu-theme-${theme}`]: theme,
@@ -46,9 +85,10 @@ export default {
         [`gulu-level-${level}`]: level,
         disabled,
         loading,
+        "gulu-leftIcon": leftIcon,
+        "gulu-rightIcon": rightIcon,
       };
     });
-
     return { classes };
   },
 };
@@ -196,11 +236,30 @@ $grey : hsl(0, 0%, 50%);
   font-size : 16px;
   padding : 0 16px;
   height : 30px;
+  line-height : 30px;
 }
 .gulu-size-small {
   font-size : 14px;
   padding : 0 14px;
   height : 24px;
+}
+
+.icon {
+  height : 1em;
+  width : 1em;
+}
+.gulu-leftIcon {
+  padding-left : .8em;
+  svg {
+    margin-right : .5em;
+  }
+}
+
+.gulu-rightIcon {
+  padding-right : .8em;
+  svg {
+    margin-left : .5em;
+  }
 }
 
 </style>
