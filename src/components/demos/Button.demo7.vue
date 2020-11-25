@@ -2,6 +2,15 @@
 button group
 </demo>
 <template>
+  <button-group>
+    <Button icon='back'></Button>
+    <Button icon='forward'></Button>
+  </button-group>
+  <ButtonGroup>
+    <Button icon='back'></Button>
+    <Button>更多</Button>
+    <Button icon='forward'></Button>
+  </ButtonGroup>
   <ButtonGroup>
     <Button icon='back'>后退</Button>
     <Button icon='download'>下载</Button>
@@ -9,15 +18,16 @@ button group
     <Button
       icon='forward'
       iconPosition='right'
-    >前进</Button>
+    >
+      前进
+    </Button>
   </ButtonGroup>
-  <Button icon='back'>后退</Button>
 
 </template>
 
 <script>
-import Button from "/@/lib/Button.vue";
-import ButtonGroup from "/@/lib/ButtonGroup.vue";
+import Button from "/src/lib/Button.vue";
+import ButtonGroup from "/src/lib/ButtonGroup.vue";
 export default {
   components: { Button, ButtonGroup },
 };

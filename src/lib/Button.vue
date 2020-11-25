@@ -118,187 +118,179 @@ export default {
 };
 </script>
 <style lang="scss">
-$h: 30px;
-$border-color: #999999;
-$color: #333333;
-$blue: #40a9ff;
-$radius: 4px;
-$red: hsl(0, 100%, 50%);
-$grey: hsl(0, 0%, 50%);
+$h : 30px;
+$border-color : #999999;
+$color : #333333;
+$blue : #40A9FF;
+$radius : 4px;
+$red : hsl(0, 100%, 50%);
+$grey : hsl(0, 0%, 50%);
 .gulu-button {
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  vertical-align: middle;
-  white-space: nowrap;
-  background-color: white;
-  color: $color;
-  border: 1px solid $border-color;
-  border-radius: $radius;
-  box-shadow: 0 1px 1 fade-out (black, 0.95);
-  margin: 0px 8px 8px;
+  box-sizing : border-box;
+  cursor : pointer;
+  display : inline-flex;
+  justify-content : center;
+  align-items : center;
+  vertical-align : middle;
+  white-space : nowrap;
+  background-color : white;
+  color : $color;
+  border : 1px solid $border-color;
+  border-radius : $radius;
+  box-shadow : 0 1px 1 fade-out (black, .95);
+  margin : 0px 8px 8px;
 
-  &:hover,
-  &:focus {
-    color: $blue;
-    border-color: $blue;
+  &:hover, &:focus {
+    color : $blue;
+    border-color : $blue;
   }
   &:focus {
-    outline: none;
+    outline : none;
   }
   &::-moz-focus-inner {
-    border: 0;
+    border : 0;
   }
 
   &.gulu-theme-link {
-    border-color: transparent;
-    box-shadow: none;
-    color: $blue;
-    &:hover,
-    &:focus {
-      color: lighten($blue, 10%);
+    border-color : transparent;
+    box-shadow : none;
+    color : $blue;
+    &:hover, &:focus {
+      color : lighten($blue, 10%);
     }
   }
 
   &.gulu-theme-text {
-    border-color: transparent;
-    box-shadow: none;
-    color: inherit;
-    &:hover,
-    &fouce {
-      background-color: darken(white, 5%);
+    border-color : transparent;
+    box-shadow : none;
+    color : inherit;
+    &:hover, &fouce {
+      background-color : darken(white, 5%);
     }
   }
 
   &.gulu-theme-button {
     &.gulu-level-main {
-      background-color: $blue;
-      border-color: $blue;
-      color: white;
-      &:hover,
-      &:focus {
-        background-color: darken($blue, 10%);
-        border-color: darken($blue, 10%);
+      background-color : $blue;
+      border-color : $blue;
+      color : white;
+      &:hover, &:focus {
+        background-color : darken($blue, 10%);
+        border-color : darken($blue, 10%);
       }
     }
     &.gulu-level-danger {
-      background-color: $red;
-      border-color: $red;
-      color: white;
-      &:hover,
-      &:focus {
-        background-color: darken($red, 10%);
-        border-color: darken($red, 10%);
+      background-color : $red;
+      border-color : $red;
+      color : white;
+      &:hover, &:focus {
+        background-color : darken($red, 10%);
+        border-color : darken($red, 10%);
       }
     }
   }
 
   &.gulu-theme-link {
     &.gulu-level-danger {
-      color: $red;
-      &:hover,
-      &:focus {
-        color: darken($red, 10%);
+      color : $red;
+      &:hover, &:focus {
+        color : darken($red, 10%);
       }
     }
   }
 
   &.gulu-theme-text {
     &.gulu-level-main {
-      color: $blue;
-      &:hover,
-      &focus {
-        color: darken($blue, 10%);
+      color : $blue;
+      &:hover, &focus {
+        color : darken($blue, 10%);
       }
     }
     &.gulu-level-danger {
-      color: $red;
-      &:hover,
-      &focus {
-        color: darken($red, 10%);
+      color : $red;
+      &:hover, &focus {
+        color : darken($red, 10%);
       }
     }
   }
 
   &.gulu-theme-button {
     &.disabled {
-      cursor: not-allowed;
-      color: $grey;
+      cursor : not-allowed;
+      color : $grey;
       &:hover {
-        border-color: $grey;
+        border-color : $grey;
       }
     }
   }
 
-  &.gulu-theme-link,
-  &.gulu-theme-text {
+  &.gulu-theme-link, &.gulu-theme-text {
     &.disabled {
-      cursor: not-allowed;
-      color: $grey;
+      cursor : not-allowed;
+      color : $grey;
     }
   }
 }
 
 .gulu-size-big {
-  font-size: 18px;
-  padding: 0 18px;
-  height: 36px;
-  line-height: 36px;
+  font-size : 18px;
+  padding : 0 18px;
+  height : 36px;
+  line-height : 36px;
 }
 .gulu-size-normal {
-  font-size: 16px;
-  padding: 0 16px;
-  height: 30px;
-  line-height: 30px;
+  font-size : 16px;
+  padding : 0 16px;
+  height : 30px;
+  line-height : 30px;
 }
 .gulu-size-small {
-  font-size: 14px;
-  padding: 0 14px;
-  height: 24px;
-  line-height: 24px;
+  font-size : 14px;
+  padding : 0 14px;
+  height : 24px;
+  line-height : 24px;
 }
 .gulu-leftIcon {
-  padding-left: 0.8em;
+  padding-left : .8em;
 }
 .gulu-rightIcon {
-  padding-right: 0.8em;
+  padding-right : .8em;
 }
 .gulu-leftSpan {
-  order: 1;
-  margin-right: 0.5em;
+  order : 1;
+  margin-right : .5em;
 }
 .slotTest {
-  order: 2;
+  order : 2;
 }
 .gulu-rightSpan {
-  order: 3;
-  margin-left: 0.5em;
+  order : 3;
+  margin-left : .5em;
 }
 .gulu-loadingIndicator {
-  width: 14px;
-  height: 14px;
-  display: inline-block;
-  border-radius: 8px;
-  border-color: $blue $blue $blue transparent;
-  border-style: solid;
-  border-width: 2px;
-  animation: gulu-spin 1.5s infinite linear;
+  width : 14px;
+  height : 14px;
+  display : inline-block;
+  border-radius : 8px;
+  border-color : $blue $blue $blue transparent;
+  border-style : solid;
+  border-width : 2px;
+  animation : gulu-spin 1.5s infinite linear;
 }
 .icon {
-  height: 1em;
-  width: 1em;
+  height : 1em;
+  width : 1em;
 }
 .iconLoading {
-  animation: gulu-spin 1.5s infinite linear;
+  animation : gulu-spin 1.5s infinite linear;
 }
 @keyframes gulu-spin {
   0% {
-    transform: rotate(0deg);
+    transform : rotate(0deg);
   }
   100% {
-    transform: rotate(360deg);
+    transform : rotate(360deg);
   }
 }
+
 </style>

@@ -6,8 +6,8 @@
 </template>
 
 <script lang='ts'>
-import Button from "/src/lib/Button.vue";
-import { openDialog } from "/src/lib/openDialog";
+import Button from "/@/lib/Button.vue";
+import { openDialog } from "/@/lib/openDialog";
 export default {
   components: { Button },
   setup() {

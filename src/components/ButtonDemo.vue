@@ -13,15 +13,19 @@
 </template>
 
 <script>
-import Demo from "/@/components/Demo.vue";
-import BottomNav from "/@/components/BottomNav.vue";
-import ButtonDemo1 from "/@/components/demos/Button.demo1.vue";
-import ButtonDemo2 from "/@/components/demos/Button.demo2.vue";
-import ButtonDemo3 from "/@/components/demos/Button.demo3.vue";
-import ButtonDemo4 from "/@/components/demos/Button.demo4.vue";
-import ButtonDemo5 from "/@/components/demos/Button.demo5.vue";
-import ButtonDemo6 from "/@/components/demos/Button.demo6.vue";
-import ButtonDemo7 from "/@/components/demos/Button.demo7.vue";
+/**
+
+ */
+import Demo from "./Demo.vue";
+import BottomNav from "./BottomNav.vue";
+import ButtonDemo1 from "./demos/Button.demo1.vue";
+
+import ButtonDemo2 from "/src/components/demos/Button.demo2.vue";
+import ButtonDemo3 from "/src/components/demos/Button.demo3.vue";
+import ButtonDemo4 from "/src/components/demos/Button.demo4.vue";
+import ButtonDemo5 from "/src/components/demos/Button.demo5.vue";
+import ButtonDemo6 from "/src/components/demos/Button.demo6.vue";
+import ButtonDemo7 from "/src/components/demos/Button.demo7.vue";
 
 export default {
   name: "ButtonDemo",

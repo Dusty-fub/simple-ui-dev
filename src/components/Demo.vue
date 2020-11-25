@@ -22,7 +22,7 @@
 
 </template>
 <script lang='ts'>
-import Button from "/@/lib/Button.vue";
+import Button from "../lib/Button.vue";
 import "prismjs";
 import "prismjs/themes/prism.css";
 import { computed, ref } from "vue";
@@ -34,7 +34,7 @@ export default {
   setup(props) {
     const userCode = props.component.__sourceCode
       .replace(
-        /import ([A-Za-z]*) from ["']\/@\/lib\/([A-Za-z]*)\.vue["']/g,
+        /import ([A-Za-z]*) from ["']\/src\/lib\/([A-Za-z]*)\.vue["']/g,
         'import {$1} from "rime-simple-ui"'
       )
       .replace("/@/lib/openDialog", "rime-simple-ui")

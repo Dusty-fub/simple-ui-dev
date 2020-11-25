@@ -34,13 +34,14 @@
 </template>
 
 <script>
-import Button from "/@/lib/Button.vue";
+import Button from "/src/lib/Button.vue";
 export default {
   components: { Button },
 };
 </script>
 <style lang="scss">
 .buttonRow {
-  padding: 10px 0;
+  padding : 10px 0;
 }
+
 </style>

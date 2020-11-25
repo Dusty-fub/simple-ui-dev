@@ -1,8 +1,8 @@
 import { createApp } from "vue";
-import "/@/lib/gulu.scss";
+import "/src/lib/gulu.scss";
 import "./index.scss";
 import App from "./App.vue";
-import { router } from "./router";
+import { router } from "./router.js";
 import "github-markdown-css";
 
 const app = createApp(App);

@@ -44,12 +44,10 @@
 </template>
 
 <script lang="ts">
-import TopNav from "/@/components/TopNav.vue";
+import TopNav from "../components/TopNav.vue";
 import { inject, Ref } from "vue";
 export default {
-  components: {
-    TopNav,
-  },
+  components: { TopNav },
   setup() {
     const asideVi = inject<Ref<boolean>>("asideVi");
     return { asideVi };
@@ -63,51 +61,52 @@ export default {
 
 <style lang="scss" scoped>
 .content {
-  flex: 1;
-  overflow: auto;
-  display: flex;
-  align-items: flex-start;
+  flex : 1;
+  overflow : auto;
+  display : flex;
+  align-items : flex-start;
 
   aside {
-    background-color: hsl(180, 70%, 50%);
-    width: 150px;
-    height: 100%;
-    max-height: 100%;
-    overflow: auto;
+    background-color : hsl(180, 70%, 50%);
+    width : 150px;
+    height : 100%;
+    max-height : 100%;
+    overflow : auto;
 
     > h2 {
-      padding: 16px;
-      margin-bottom: 4px;
+      padding : 16px;
+      margin-bottom : 4px;
     }
 
     > ol {
       > li {
         > a {
-          line-height: 21px;
-          display: block;
-          padding: 4px 16px;
+          line-height : 21px;
+          display : block;
+          padding : 4px 16px;
         }
 
         .router-link-active {
-          text-decoration: underline;
-          color: hsl(260, 10%, 50%);
-          background-color: hsl(0, 2%, 98%);
+          text-decoration : underline;
+          color : hsl(260, 10%, 50%);
+          background-color : hsl(0, 2%, 98%);
         }
       }
     }
 
     @media (max-width: 500px) {
-      position: fixed;
-      left: 0;
-      z-index: 1;
+      position : fixed;
+      left : 0;
+      z-index : 1;
     }
   }
 
   main {
-    flex: 1;
-    height: 100%;
-    max-height: 100%;
-    overflow: auto;
+    flex : 1;
+    height : 100%;
+    max-height : 100%;
+    overflow : auto;
   }
 }
+
 </style>

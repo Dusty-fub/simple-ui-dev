@@ -9,8 +9,8 @@
 </template>
 
 <script lang="ts">
-import Demo from "/@/components/Demo.vue";
-import BottomNav from "/@/components/BottomNav.vue";
+import Demo from "/src/components/Demo.vue";
+import BottomNav from "/src/components/BottomNav.vue";
 
 import SwitchDemo1 from "./demos/Switch.demo1.vue";
 import SwitchDemo2 from "./demos/Switch.demo2.vue";
