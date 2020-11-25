@@ -5,31 +5,40 @@
     :class="classes"
   >
     <span
-      v-if='loading'
+      v-if='lineLoading'
       class="gulu-loadingIndicator"
+      :class="iconClasses"
     ></span>
-    <span v-if='icon&&iconPosition==="left"'>
+
+    <span
+      v-if='(icon||dotLoading)&&
+            (iconPosition==="left"||iconPosition==="right")'
+      :class="iconClasses"
+    >
       <svg
         class="icon"
+        :class="{iconLoading:dotLoading}"
         aria-hidden="true"
       >
-        <use :xlink:href="`#icon-${icon}`"></use>
-      </svg>
-    </span>
-    <slot />
-    <span v-if='icon&&iconPosition==="right"'>
-      <svg
-        class="icon"
-        aria-hidden="true"
-      >
-        <use :xlink:href="`#icon-${icon}`"></use>
+        <use :xlink:href="`#icon-${dotLoading?'loading':icon}`"></use>
       </svg>
     </span>
 
+    <span class="slotTest">
+      <slot />
+    </span>
   </button>
 </template>
 <script lang="ts" >
-import { computed, onMounted, ref } from "vue";
+import {
+  computed,
+  onMounted,
+  reactive,
+  ref,
+  watch,
+  watchEffect,
+  nextTick,
+} from "vue";
 export default {
   inheritAttrs: false,
   props: {
@@ -41,13 +50,15 @@ export default {
       type: String,
       default: "",
     },
+    dotLoading: {
+      type: Boolean,
+      default: false,
+    },
     iconPosition: {
       type: String,
       default: "left",
       validator(value) {
-        if (value !== "left" && value !== "right") {
-          return false;
-        }
+        return value === "left" || value === "right";
       },
     },
     size: {
@@ -62,21 +73,33 @@ export default {
       type: Boolean,
       default: false,
     },
-    loading: {
+    lineLoading: {
       type: Boolean,
       default: false,
     },
   },
   setup(props, context) {
-    const { theme, size, level, disabled, loading, iconPosition } = props;
+    const { icon, theme, size, level, disabled, iconPosition } = props;
 
-    let leftIcon = iconPosition === "left";
-    let rightIcon = iconPosition === "right";
+    let leftIcon = ref();
+    let rightIcon = ref();
+    let iconClasses = reactive({});
 
-    if (!context.slots.default) {
-      leftIcon = false;
-      rightIcon = false;
-    }
+    watchEffect(() => {
+      leftIcon.value = iconPosition === "left";
+      rightIcon.value = iconPosition === "right";
+
+      if (
+        !context.slots.default ||
+        (!icon && !props["dotLoading"] && !props["lineLoading"])
+      ) {
+        leftIcon.value = false;
+        rightIcon.value = false;
+      }
+
+      iconClasses["gulu-leftSpan"] = leftIcon.value;
+      iconClasses["gulu-rightSpan"] = rightIcon.value;
+    });
 
     const classes = computed(() => {
       return {
@@ -84,182 +107,198 @@ export default {
         [`gulu-size-${size}`]: size,
         [`gulu-level-${level}`]: level,
         disabled,
-        loading,
-        "gulu-leftIcon": leftIcon,
-        "gulu-rightIcon": rightIcon,
+        lineLoading: props["lineLoading"],
+        "gulu-leftIcon": leftIcon.value,
+        "gulu-rightIcon": rightIcon.value,
       };
     });
-    return { classes };
+
+    return { classes, iconClasses };
   },
 };
 </script>
 <style lang="scss">
-$h : 30px;
-$border-color : #999999;
-$color : #333333;
-$blue : #40A9FF;
-$radius : 4px;
-$red : hsl(0, 100%, 50%);
-$grey : hsl(0, 0%, 50%);
+$h: 30px;
+$border-color: #999999;
+$color: #333333;
+$blue: #40a9ff;
+$radius: 4px;
+$red: hsl(0, 100%, 50%);
+$grey: hsl(0, 0%, 50%);
 .gulu-button {
-  box-sizing : border-box;
-  cursor : pointer;
-  display : inline-flex;
-  justify-content : center;
-  align-items : center;
-  vertical-align : middle;
-  white-space : nowrap;
-  background-color : white;
-  color : $color;
-  border : 1px solid $border-color;
-  border-radius : $radius;
-  box-shadow : 0 1px 1 fade-out (black, .95);
-  margin : 0px 8px 8px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  background-color: white;
+  color: $color;
+  border: 1px solid $border-color;
+  border-radius: $radius;
+  box-shadow: 0 1px 1 fade-out (black, 0.95);
+  margin: 0px 8px 8px;
 
-  &:hover, &:focus {
-    color : $blue;
-    border-color : $blue;
+  &:hover,
+  &:focus {
+    color: $blue;
+    border-color: $blue;
   }
   &:focus {
-    outline : none;
+    outline: none;
   }
   &::-moz-focus-inner {
-    border : 0;
+    border: 0;
   }
 
   &.gulu-theme-link {
-    border-color : transparent;
-    box-shadow : none;
-    color : $blue;
-    &:hover, &:focus {
-      color : lighten($blue, 10%);
+    border-color: transparent;
+    box-shadow: none;
+    color: $blue;
+    &:hover,
+    &:focus {
+      color: lighten($blue, 10%);
     }
   }
 
   &.gulu-theme-text {
-    border-color : transparent;
-    box-shadow : none;
-    color : inherit;
-    &:hover, &fouce {
-      background-color : darken(white, 5%);
+    border-color: transparent;
+    box-shadow: none;
+    color: inherit;
+    &:hover,
+    &fouce {
+      background-color: darken(white, 5%);
     }
   }
 
   &.gulu-theme-button {
     &.gulu-level-main {
-      background-color : $blue;
-      border-color : $blue;
-      color : white;
-      &:hover, &:focus {
-        background-color : darken($blue, 10%);
-        border-color : darken($blue, 10%);
+      background-color: $blue;
+      border-color: $blue;
+      color: white;
+      &:hover,
+      &:focus {
+        background-color: darken($blue, 10%);
+        border-color: darken($blue, 10%);
       }
     }
     &.gulu-level-danger {
-      background-color : $red;
-      border-color : $red;
-      color : white;
-      &:hover, &:focus {
-        background-color : darken($red, 10%);
-        border-color : darken($red, 10%);
+      background-color: $red;
+      border-color: $red;
+      color: white;
+      &:hover,
+      &:focus {
+        background-color: darken($red, 10%);
+        border-color: darken($red, 10%);
       }
     }
   }
 
   &.gulu-theme-link {
     &.gulu-level-danger {
-      color : $red;
-      &:hover, &:focus {
-        color : darken($red, 10%);
+      color: $red;
+      &:hover,
+      &:focus {
+        color: darken($red, 10%);
       }
     }
   }
 
   &.gulu-theme-text {
     &.gulu-level-main {
-      color : $blue;
-      &:hover, &focus {
-        color : darken($blue, 10%);
+      color: $blue;
+      &:hover,
+      &focus {
+        color: darken($blue, 10%);
       }
     }
     &.gulu-level-danger {
-      color : $red;
-      &:hover, &focus {
-        color : darken($red, 10%);
+      color: $red;
+      &:hover,
+      &focus {
+        color: darken($red, 10%);
       }
     }
   }
 
   &.gulu-theme-button {
     &.disabled {
-      cursor : not-allowed;
-      color : $grey;
+      cursor: not-allowed;
+      color: $grey;
       &:hover {
-        border-color : $grey;
+        border-color: $grey;
       }
     }
   }
 
-  &.gulu-theme-link, &.gulu-theme-text {
+  &.gulu-theme-link,
+  &.gulu-theme-text {
     &.disabled {
-      cursor : not-allowed;
-      color : $grey;
+      cursor: not-allowed;
+      color: $grey;
     }
-  }
-  > .gulu-loadingIndicator {
-    width : 14px;
-    height : 14px;
-    display : inline-block;
-    margin-right : .5em;
-    border-radius : 8px;
-    border-color : $blue $blue $blue transparent;
-    border-style : solid;
-    border-width : 2px;
-    animation : gulu-spin 1s infinite linear;
   }
 }
 
-@keyframes gulu-spin {
-  0% {
-    transform : rotate(0deg);
-  }
-  100% {
-    transform : rotate(360deg);
-  }
-}
 .gulu-size-big {
-  font-size : 18px;
-  padding : 0 18px;
-  height : 36px;
+  font-size: 18px;
+  padding: 0 18px;
+  height: 36px;
+  line-height: 36px;
 }
 .gulu-size-normal {
-  font-size : 16px;
-  padding : 0 16px;
-  height : 30px;
-  line-height : 30px;
+  font-size: 16px;
+  padding: 0 16px;
+  height: 30px;
+  line-height: 30px;
 }
 .gulu-size-small {
-  font-size : 14px;
-  padding : 0 14px;
-  height : 24px;
-}
-
-.icon {
-  height : 1em;
-  width : 1em;
+  font-size: 14px;
+  padding: 0 14px;
+  height: 24px;
+  line-height: 24px;
 }
 .gulu-leftIcon {
-  padding-left : .8em;
-  svg {
-    margin-right : .5em;
-  }
+  padding-left: 0.8em;
 }
-
 .gulu-rightIcon {
-  padding-right : .8em;
-  svg {
-    margin-left : .5em;
+  padding-right: 0.8em;
+}
+.gulu-leftSpan {
+  order: 1;
+  margin-right: 0.5em;
+}
+.slotTest {
+  order: 2;
+}
+.gulu-rightSpan {
+  order: 3;
+  margin-left: 0.5em;
+}
+.gulu-loadingIndicator {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  border-radius: 8px;
+  border-color: $blue $blue $blue transparent;
+  border-style: solid;
+  border-width: 2px;
+  animation: gulu-spin 1.5s infinite linear;
+}
+.icon {
+  height: 1em;
+  width: 1em;
+}
+.iconLoading {
+  animation: gulu-spin 1.5s infinite linear;
+}
+@keyframes gulu-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
-
 </style>

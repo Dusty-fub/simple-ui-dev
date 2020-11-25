@@ -1,5 +1,5 @@
 <demo>
-icon
+图标 示例
 </demo>
 <template>
   <Button icon='setting'>
@@ -25,6 +25,7 @@ icon
     icon='forward'
     iconPosition='right'
   >前进</Button>
+
 </template>
 
 <script>

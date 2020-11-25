@@ -5,6 +5,7 @@
   <Demo :component="ButtonDemo4" />
   <Demo :component="ButtonDemo5" />
   <Demo :component="ButtonDemo6" />
+  <Demo :component="ButtonDemo7" />
   <BottomNav
     leftJump='/doc/switch'
     rightJump='/doc/dialog'
@@ -20,6 +21,7 @@ import ButtonDemo3 from "/@/components/demos/Button.demo3.vue";
 import ButtonDemo4 from "/@/components/demos/Button.demo4.vue";
 import ButtonDemo5 from "/@/components/demos/Button.demo5.vue";
 import ButtonDemo6 from "/@/components/demos/Button.demo6.vue";
+import ButtonDemo7 from "/@/components/demos/Button.demo7.vue";
 
 export default {
   name: "ButtonDemo",
@@ -31,6 +33,7 @@ export default {
       ButtonDemo4,
       ButtonDemo5,
       ButtonDemo6,
+      ButtonDemo7,
     };
   },
   components: { Demo, BottomNav },
