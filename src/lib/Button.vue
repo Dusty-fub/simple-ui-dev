@@ -30,6 +30,7 @@
   </button>
 </template>
 <script lang="ts" >
+import "./svg.js";
 import {
   computed,
   onMounted,
@@ -277,10 +278,7 @@ $grey : hsl(0, 0%, 50%);
   border-width : 2px;
   animation : gulu-spin 1.5s infinite linear;
 }
-.icon {
-  height : 1em;
-  width : 1em;
-}
+
 .iconLoading {
   animation : gulu-spin 1.5s infinite linear;
 }

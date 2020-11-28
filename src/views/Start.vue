@@ -10,7 +10,7 @@
 import "rime-simple-ui/dist/lib/gulu.css";</code></pre>
     <p>就可以使用我提供的组件了。</p>
     <p>使用本框架前，请在css中开启 border-box</p>
-    <pre><code>*{box-sizing:border-box;}</code></pre>
+    <pre><code>*,*::before,*::after{box-sizing:border-box;}</code></pre>
     <h2>Vue 单文件组件</h2>
     <p>代码示例：</p>
     <pre><code>&lt;template&gt;
