@@ -37,6 +37,9 @@
         <li>
           <router-link to="/doc/input">Input 组件</router-link>
         </li>
+        <li>
+          <router-link to="/doc/layout">layout 布局</router-link>
+        </li>
       </ol>
     </aside>
     <main>

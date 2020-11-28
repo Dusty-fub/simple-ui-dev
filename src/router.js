@@ -6,6 +6,7 @@ import TabsDemo from "./components/TabsDemo.vue";
 import DialogDemo from "./components/DialogDemo.vue";
 import ButtonDemo from "./components/ButtonDemo.vue";
 import InputDemo from "./components/InputDemo.vue";
+import LayoutDemo from "./components/LayoutDemo.vue";
 import Intro from "./views/Intro.vue";
 import Start from "./views/Start.vue";
 import Install from "./views/Install.vue";
@@ -55,6 +56,10 @@ export const router = createRouter({
         {
           path: "Input",
           component: InputDemo,
+        },
+        {
+          path: "layout",
+          component: LayoutDemo,
         },
       ],
     },
