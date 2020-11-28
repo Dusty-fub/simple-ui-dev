@@ -2,11 +2,15 @@
   <input
     class='gulu-input'
     type="text"
-    :value="value"
-    placeholder="please input ..."
+    :value="modelValue||value"
+    :placeholder="placeholder"
     :disabled='disabled'
     :readonly="readonly"
     :class="{'error':error}"
+    @change="$emit('change',$event)"
+    @input="inputEvent"
+    @focus="$emit('focus',$event)"
+    @blur="$emit('blur',$event)"
   >
   <template v-if='error'>
     <span class="gulu-icon">
@@ -24,9 +28,14 @@
 <script lang='ts'>
 export default {
   props: {
+    modelValue: String,
     value: {
       type: String,
       default: "",
+    },
+    placeholder: {
+      type: String,
+      default: "please input ...",
     },
     disabled: {
       type: Boolean,
@@ -40,6 +49,14 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  emits: ["change", "blur", "input", "focus", "update:modelValue"],
+  setup(props, ctx) {
+    const inputEvent = (e) => {
+      ctx.emit("input", e);
+      ctx.emit("update:modelValue", e.target.value);
+    };
+    return { inputEvent };
   },
 };
 </script>
