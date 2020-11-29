@@ -1,33 +1,39 @@
 <template>
   <div
-    class="col"
-    :class="[`col-${span}`]"
+    class="gulu-col"
+    ref="guluCol"
   >
     <slot></slot>
   </div>
 </template>
 <script lang='ts'>
+import { onMounted, ref } from "vue";
 export default {
+  name: "gulu-col",
   props: {
-    span: {
+    span: [Number],
+    offset: {
       type: Number,
-      default: 24,
+      default: 0,
     },
+  },
+  setup(props) {
+    const guluCol = ref<HTMLDivElement>(null);
+    onMounted(() => {
+      guluCol.value.style.flex = `${props.span / 24}`;
+      guluCol.value.style["left"] = `${(props.offset / 24) * 100}%`;
+    });
+    return { guluCol };
   },
 };
 </script>
 <style lang="scss">
-.col {
-  height : 100px;
-  flex : 1;
-  background-color : grey;
-  border : 1px solid pink;
-  $class-prefix : col-;
-  @for $n from 1 through 24 {
-    &.#{$class-prefix}#{$n} {
-      flex : ($n/24);
-    }
-  }
-}
+.gulu-col {
+  height: 100px;
+  background-color: grey;
+  box-shadow: inset 1px 0 pink, inset -1px 0 pink, inset 0px 1px pink,
+    inset 0 -1px pink;
 
+  position: relative;
+}
 </style>

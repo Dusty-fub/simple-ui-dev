@@ -1,24 +1,17 @@
 <demo>
-    均分
+    偏移
 </demo>
 <template>
   <Row>
-    <Col />
+    <Col :span='3' />
+    <Col :span='18' />
   </Row>
   <Row>
-    <Col>左</Col>
-    <Col>右</Col>
-  </Row>
-  <Row>
-    <Col>左</Col>
-    <Col>中</Col>
-    <Col>右</Col>
-  </Row>
-  <Row>
-    <Col />
-    <Col />
-    <Col />
-    <Col />
+    <Col :span='3' />
+    <Col
+      :span='18'
+      :offset='3'
+    />
   </Row>
 </template>
 <script lang='ts'>
