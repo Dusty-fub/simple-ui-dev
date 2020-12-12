@@ -1,13 +1,14 @@
 <template>
   <div
     class="gulu-col"
+    :class="phoneClass"
     ref="guluCol"
   >
     <slot></slot>
   </div>
 </template>
 <script lang='ts'>
-import { onMounted, ref } from "vue";
+import { onMounted, reactive, ref } from "vue";
 export default {
   name: "gulu-col",
   props: {
@@ -17,11 +18,25 @@ export default {
     farLeft: { type: Boolean, default: false },
     farRight: { type: Boolean, default: false },
     gutterSpace: { type: Number, default: 0 },
+    phone: {
+      type: Object,
+      default: {},
+      validator(value) {
+        let keys = Object.keys(value);
+        let valid = true;
+        keys.forEach((key) => {
+          if (!["span", "offset"].includes(key)) {
+            valid = false;
+          }
+        });
+        return valid;
+      },
+    },
   },
   setup(props) {
     const guluCol = ref<HTMLDivElement>(null);
     onMounted(() => {
-      guluCol.value.style.flex = `${props.span / 24}`;
+      guluCol.value.style.flex = `${props["span"] / 24}`;
       if (props.gutterSpace) {
         guluCol.value.style["left"] = `calc(${(props.offset / 24) * 100}% - ${
           (props.gutterSpace * props.offset) / 24
@@ -37,7 +52,10 @@ export default {
         guluCol.value.style["margin-right"] = "0";
       }
     });
-    return { guluCol };
+    const phoneClass = reactive({});
+    phoneClass["a"] = "jjj";
+
+    return { guluCol, phoneClass };
   },
 };
 </script>
@@ -48,5 +66,24 @@ export default {
   box-shadow: inset 1px 0 pink, inset -1px 0 pink, inset 0px 1px pink,
     inset 0 -1px pink;
   position: relative;
+}
+@media (max-width: 576px) {
+  //手机
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  //ipad
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  //宅屏幕 narrow-pc
+}
+
+@media (min-width: 993px) and (max-width: 1200px) {
+  //pc
+}
+
+@media (min-width: 1201px) {
+  // wide-pc
 }
 </style>

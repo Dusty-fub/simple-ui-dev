@@ -43,18 +43,9 @@ import {
 export default {
   inheritAttrs: false,
   props: {
-    theme: {
-      type: String,
-      default: "button",
-    },
-    icon: {
-      type: String,
-      default: "",
-    },
-    dotLoading: {
-      type: Boolean,
-      default: false,
-    },
+    theme: { type: String, default: "button" },
+    icon: { type: String, default: "" },
+    dotLoading: { type: Boolean, default: false },
     iconPosition: {
       type: String,
       default: "left",
@@ -62,22 +53,10 @@ export default {
         return value === "left" || value === "right";
       },
     },
-    size: {
-      type: String,
-      default: "normal",
-    },
-    level: {
-      type: String,
-      default: "normal",
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    lineLoading: {
-      type: Boolean,
-      default: false,
-    },
+    size: { type: String, default: "normal" },
+    level: { type: String, default: "normal" },
+    disabled: { type: Boolean, default: false },
+    lineLoading: { type: Boolean, default: false },
   },
   setup(props, context) {
     const { icon, theme, size, level, disabled, iconPosition } = props;

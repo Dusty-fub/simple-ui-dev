@@ -53,7 +53,6 @@ export default {
         cols[i].props.span = reAllocate;
       } else {
         cols[i].props = { span: reAllocate };
-        console.log(reAllocate);
       }
     });
 

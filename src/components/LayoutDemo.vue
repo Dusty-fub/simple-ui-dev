@@ -1,19 +1,19 @@
 <template>
-  <Demo :component="LayoutDemo1" />
-  <Demo :component="LayoutDemo2" />
-  <Demo :component="LayoutDemo3" />
-  <Demo :component="LayoutDemo4" />
+  <Demo :component="GridDemo1" />
+  <Demo :component="GridDemo2" />
+  <Demo :component="GridDemo3" />
+  <Demo :component="GridDemo4" />
 </template>
 
 <script lang='ts'>
 import Demo from "./Demo.vue";
-import LayoutDemo1 from "./demos/Layout.demo1.vue";
-import LayoutDemo2 from "./demos/Layout.demo2.vue";
-import LayoutDemo3 from "./demos/Layout.demo3.vue";
-import LayoutDemo4 from "./demos/Layout.demo4.vue";
+import GridDemo1 from "./demos/Grid.demo1.vue";
+import GridDemo2 from "./demos/Grid.demo2.vue";
+import GridDemo3 from "./demos/Grid.demo3.vue";
+import GridDemo4 from "./demos/Grid.demo4.vue";
 export default {
   setup() {
-    return { LayoutDemo1, LayoutDemo2, LayoutDemo3, LayoutDemo4 };
+    return { GridDemo1, GridDemo2, GridDemo3, GridDemo4 };
   },
   components: { Demo },
 };
