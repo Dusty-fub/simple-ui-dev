@@ -7,8 +7,14 @@
     <div class="demo-actions">
       <Button @click="toggleCode"> {{ codeVisible ? "隐藏" : "查看" }}代码 </Button>
     </div>
-    <div class="demo-code" v-if="codeVisible">
-      <pre class="language-html" v-html="codeHtml"></pre>
+    <div
+      class="demo-code"
+      v-if="codeVisible"
+    >
+      <pre
+        class="language-html"
+        v-html="codeHtml"
+      ></pre>
     </div>
   </div>
 </template>
@@ -23,13 +29,38 @@ export default {
     component: Object,
   },
   setup(props) {
-    const userCode = props.component.__sourceCode
-      .replace(
-        /import ([A-Za-z]*) from ["']\/src\/lib\/([A-Za-z]*)\.vue["']/g,
-        'import {$1} from "rime-simple-ui"'
-      )
-      .replace("/@/lib/openDialog", "rime-simple-ui")
-      .replace("export", `import "rime-simple-ui/dist/lib/gulu.css";\nexport`);
+    const replaceCode = (str) => {
+      str = str
+        .replace(
+          /import ([A-Za-z]*) from ["']\/src\/lib\/([A-Za-z]*)\.vue["']/g,
+          'import {$1} from "rime-simple-ui"'
+        )
+        .replace("/src/lib/openDialog", "rime-simple-ui")
+        .replace(
+          "export",
+          `import "rime-simple-ui/dist/lib/gulu.css";\nexport`
+        );
+
+      let reg = /import \{[\s]*([A-Za-z]*)[\s]*\} from "rime-simple-ui"/g;
+
+      const arr = [...str.matchAll(reg)];
+      let requiredComponents = "";
+      arr.map((item, index) => {
+        if (index === 0) {
+          requiredComponents += item[1];
+        } else {
+          requiredComponents += "," + item[1];
+        }
+      });
+
+      str = str.replace(
+        /import \{[\s\S]*\} from "rime-simple-ui";/g,
+        `import {${requiredComponents}} from "rime-simple-ui"`
+      );
+      return str;
+    };
+
+    let userCode = replaceCode(props.component.__sourceCode);
 
     const codeHtml = computed(() => {
       return Prism.highlight(userCode, Prism.languages.html, "html");
