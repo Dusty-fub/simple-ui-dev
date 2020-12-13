@@ -1,5 +1,5 @@
 <template>
-  <div class="gulu-footer" ref="guluFooter">
+  <div class="gulu-header" ref="guluHeader">
     <slot></slot>
   </div>
 </template>
@@ -7,6 +7,7 @@
 <script lang="ts">
 import { onMounted, ref } from "vue";
 export default {
+  name: "guluHeader",
   props: {
     height: {
       type: String,
@@ -14,17 +15,19 @@ export default {
     },
   },
   setup(props) {
-    const guluFooter = ref<HTMLDivElement>(null);
+    const guluHeader = ref<HTMLDivElement>(null);
+
     onMounted(() => {
-      guluFooter.value.style.height = props.height;
+      guluHeader.value.style.height = props.height;
     });
-    return { guluFooter };
+
+    return { guluHeader };
   },
 };
 </script>
 
 <style lang="scss">
-.gulu-footer {
+.gulu-header {
   background-color: #b3c0d1;
 }
 </style>

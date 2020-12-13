@@ -5,40 +5,19 @@
       <h2>文档</h2>
       <ol>
         <li>
-          <router-link to='/doc/intro'>
-            介绍
-          </router-link>
+          <router-link to="/doc/intro"> 介绍 </router-link>
         </li>
         <li>
-          <router-link to='/doc/install'>
-            安装
-          </router-link>
+          <router-link to="/doc/install"> 安装 </router-link>
         </li>
         <li>
-          <router-link to='/doc/start'>
-            开始使用
-          </router-link>
+          <router-link to="/doc/start"> 开始使用 </router-link>
         </li>
       </ol>
       <h2>组件列表</h2>
       <ol>
-        <li>
-          <router-link to="/doc/switch">Switch 组件</router-link>
-        </li>
-        <li>
-          <router-link to="/doc/button">Button 组件</router-link>
-        </li>
-        <li>
-          <router-link to="/doc/dialog">Dialog 组件</router-link>
-        </li>
-        <li>
-          <router-link to="/doc/tabs">Tabs 组件</router-link>
-        </li>
-        <li>
-          <router-link to="/doc/input">Input 组件</router-link>
-        </li>
-        <li>
-          <router-link to="/doc/layout">layout 布局</router-link>
+        <li v-for="item in componentsLis" :key="item.link">
+          <router-link :to="'/doc/' + item.link">{{ item.text }}</router-link>
         </li>
       </ol>
     </aside>
@@ -50,12 +29,44 @@
 
 <script lang="ts">
 import TopNav from "../components/TopNav.vue";
-import { inject, Ref } from "vue";
+import { inject, reactive, Ref } from "vue";
 export default {
   components: { TopNav },
   setup() {
     const asideVi = inject<Ref<boolean>>("asideVi");
-    return { asideVi };
+
+    const componentsLis = reactive([
+      {
+        link: "switch",
+        text: "Switch 组件",
+      },
+      {
+        link: "button",
+        text: "Button 组件",
+      },
+      {
+        link: "dialog",
+        text: "Dialog 组件",
+      },
+      {
+        link: "tabs",
+        text: "Tabs 组件",
+      },
+      {
+        link: "input",
+        text: "Input 组件",
+      },
+      {
+        link: "grid",
+        text: "Grid 栅格",
+      },
+      {
+        link: "layout",
+        text: "layout 布局",
+      },
+    ]);
+
+    return { asideVi, componentsLis };
   },
   beforeRouteEnter(to, from, next) {
     document.title = "simple ui | 文档";
@@ -66,52 +77,51 @@ export default {
 
 <style lang="scss" scoped>
 .content {
-  flex : 1;
-  overflow : auto;
-  display : flex;
-  align-items : flex-start;
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  align-items: flex-start;
 
   aside {
-    background-color : hsl(180, 70%, 50%);
-    width : 150px;
-    height : 100%;
-    max-height : 100%;
-    overflow : auto;
+    background-color: hsl(180, 70%, 50%);
+    width: 150px;
+    height: 100%;
+    max-height: 100%;
+    overflow: auto;
 
     > h2 {
-      padding : 16px;
-      margin-bottom : 4px;
+      padding: 16px;
+      margin-bottom: 4px;
     }
 
     > ol {
       > li {
         > a {
-          line-height : 21px;
-          display : block;
-          padding : 4px 16px;
+          line-height: 21px;
+          display: block;
+          padding: 4px 16px;
         }
 
         .router-link-active {
-          text-decoration : underline;
-          color : hsl(260, 10%, 50%);
-          background-color : hsl(0, 2%, 98%);
+          text-decoration: underline;
+          color: hsl(260, 10%, 50%);
+          background-color: hsl(0, 2%, 98%);
         }
       }
     }
 
     @media (max-width: 500px) {
-      position : fixed;
-      left : 0;
-      z-index : 1;
+      position: fixed;
+      left: 0;
+      z-index: 1;
     }
   }
 
   main {
-    flex : 1;
-    height : 100%;
-    max-height : 100%;
-    overflow : auto;
+    flex: 1;
+    height: 100%;
+    max-height: 100%;
+    overflow: auto;
   }
 }
-
 </style>

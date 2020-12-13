@@ -1,12 +1,11 @@
 import { createWebHashHistory, createRouter } from "vue-router";
-import Home from "./views/Home.vue";
 import Doc from "./views/Doc.vue";
 import SwitchDemo from "./components/SwitchDemo.vue";
 import TabsDemo from "./components/TabsDemo.vue";
 import DialogDemo from "./components/DialogDemo.vue";
 import ButtonDemo from "./components/ButtonDemo.vue";
 import InputDemo from "./components/InputDemo.vue";
-import LayoutDemo from "./components/LayoutDemo.vue";
+import GridDemo from "./components/GridDemo.vue";
 import Intro from "./views/Intro.vue";
 import Start from "./views/Start.vue";
 import Install from "./views/Install.vue";
@@ -17,7 +16,7 @@ export const router = createRouter({
   routes: [
     {
       path: "/",
-      component: Home,
+      component: () => import("./views/Home.vue"),
       alias: "/home",
     },
     {
@@ -58,8 +57,12 @@ export const router = createRouter({
           component: InputDemo,
         },
         {
+          path: "grid",
+          component: GridDemo,
+        },
+        {
           path: "layout",
-          component: LayoutDemo,
+          component: () => import("./components/LayoutDemo.vue"),
         },
       ],
     },
