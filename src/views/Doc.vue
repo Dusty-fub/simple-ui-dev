@@ -16,7 +16,10 @@
       </ol>
       <h2>组件列表</h2>
       <ol>
-        <li v-for="item in componentsLis" :key="item.link">
+        <li
+          v-for="item in componentsLis"
+          :key="item.link"
+        >
           <router-link :to="'/doc/' + item.link">{{ item.text }}</router-link>
         </li>
       </ol>
@@ -63,6 +66,10 @@ export default {
       {
         link: "layout",
         text: "layout 布局",
+      },
+      {
+        link: "toast",
+        text: "Toast 弹框提示",
       },
     ]);
 

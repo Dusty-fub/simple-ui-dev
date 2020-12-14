@@ -64,6 +64,10 @@ export const router = createRouter({
           path: "layout",
           component: () => import("./components/LayoutDemo.vue"),
         },
+        {
+          path: "toast",
+          component: () => import("./components/demoMap/ToastDemo.vue"),
+        },
       ],
     },
   ],
