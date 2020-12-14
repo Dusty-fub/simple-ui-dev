@@ -1,5 +1,8 @@
 <template>
-  <div class="gulu-header" ref="guluHeader">
+  <div
+    class="gulu-header"
+    ref="guluHeader"
+  >
     <slot></slot>
   </div>
 </template>

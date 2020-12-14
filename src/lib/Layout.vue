@@ -23,6 +23,7 @@ export default {
     onMounted(() => {
       if (instance.parent.type.name === "gulu-layout") {
         instance.subTree.el.style.height = "auto";
+        instance.subTree.el.style["flex-grow"] = "1";
       }
     });
 
@@ -40,6 +41,5 @@ export default {
 
 .isHasSider {
   flex-direction: row;
-  flex-grow: 1;
 }
 </style>

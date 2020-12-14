@@ -20,7 +20,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang='scss' scoped>
 .layoutDemo {
   height: 300px;
 }

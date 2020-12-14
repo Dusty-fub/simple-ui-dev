@@ -1,15 +1,14 @@
 <demo>
-    左右布局
+    示例 6
 </demo>
 <template>
   <div class="layoutDemo">
     <Layout>
-      <Header>header</Header>
+      <Sider width='200px'>sider</Sider>
       <Layout>
-        <Sider>sider</Sider>
+        <Header>header</Header>
         <Content>content</Content>
       </Layout>
-      <Footer>footer</Footer>
     </Layout>
   </div>
 </template>
@@ -19,14 +18,13 @@ import Layout from "/src/lib/Layout.vue";
 import Header from "/src/lib/Header.vue";
 import Sider from "/src/lib/Sider.vue";
 import Content from "/src/lib/Content.vue";
-import Footer from "/src/lib/Footer.vue";
 
 export default {
-  components: { Layout, Header, Sider, Content, Footer },
+  components: { Layout, Header, Sider, Content },
 };
 </script>
 
-<style>
+<style lang='scss' scoped>
 .layoutDemo {
   height: 300px;
 }
