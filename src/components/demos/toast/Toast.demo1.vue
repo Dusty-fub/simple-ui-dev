@@ -4,6 +4,7 @@
 <template>
   <Button @click="showToast1">打开消息提示</Button>
   <Button @click="showToast2">打开消息提示</Button>
+  <Button @click="showToast3">打开消息提示</Button>
 </template>
 
 <script lang="ts">
@@ -17,9 +18,21 @@ export default {
       instance.ctx.$toast("这这是息提示这是一条消示");
     };
     const showToast2 = () => {
-      instance.ctx.$toast("这这是息提示这是一条消示", "bottom");
+      instance.ctx.$toast({
+        msg: "这这是息提示这是一条消示",
+        position: "bottom",
+      });
     };
-    return { showToast1, showToast2 };
+
+    const showToast3 = () => {
+      instance.ctx.$toast({
+        msg: "这这是息提示这是一条消示",
+        position: "bottom",
+        autoCloseSeconds: 2,
+      });
+    };
+
+    return { showToast1, showToast2, showToast3 };
   },
 };
 </script>

@@ -2,7 +2,7 @@
   <div class="gulu-toast" :class="'gulu-toast-' + position">{{ msg }}</div>
 </template>
 <script lang="ts">
-import { reactive, ref } from "vue";
+import { getCurrentInstance, onMounted, reactive, ref } from "vue";
 export default {
   props: {
     msg: {
@@ -13,10 +13,24 @@ export default {
       type: String,
       default: "top",
     },
+    autoCloseSeconds: {
+      type: [Boolean, Number],
+      default: 4,
+      validator(value) {
+        return value === false || (typeof value === "number" && value > 0);
+      },
+    },
   },
-  setup(props) {
+  setup(props, ctx) {
     // const classes = ref(props.position);
     // return { classes };
+    onMounted(() => {
+      if (props["autoCloseSeconds"]) {
+        setTimeout(() => {
+          ctx.emit("close");
+        }, props["autoCloseSeconds"] * 1000);
+      }
+    });
   },
 };
 </script>
