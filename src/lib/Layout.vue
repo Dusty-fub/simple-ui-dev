@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="layout"
-    :class="isHasSider"
-  >
+  <div class="layout" :class="isHasSider">
     <slot></slot>
   </div>
 </template>

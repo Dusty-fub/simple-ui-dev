@@ -1,5 +1,5 @@
 <template>
-  <div class="gulu-toast" :class="'gulu-toast-' + position">{{ msg }}</div>
+  <div class="gulu-toast" :class="classes">{{ msg }}</div>
 </template>
 <script lang="ts">
 import { getCurrentInstance, onMounted, reactive, ref } from "vue";
@@ -9,32 +9,44 @@ export default {
       type: String,
       default: "toast msg",
     },
-    position: {
-      type: String,
-      default: "top",
+    field: {
+      type: Object,
+      default: {
+        position: "top",
+        toastAmount: 0,
+      },
     },
     autoCloseSeconds: {
       type: [Boolean, Number],
-      default: 4,
+      default: 3,
       validator(value) {
         return value === false || (typeof value === "number" && value > 0);
       },
     },
   },
   setup(props, ctx) {
-    // const classes = ref(props.position);
-    // return { classes };
+    let classes = reactive({});
+
+    classes[
+      `gulu-toast-${props["field"]["position"]}-${props["field"]["toastAmount"]}`
+    ] = true;
+
     onMounted(() => {
+      exeClose();
+    });
+
+    const exeClose = () => {
       if (props["autoCloseSeconds"]) {
         setTimeout(() => {
           ctx.emit("close");
         }, props["autoCloseSeconds"] * 1000);
       }
-    });
+    };
+    return { classes };
   },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 @mixin slideFun($direction) {
   transform: translateX(-50%);
   $tY: -100%;
@@ -63,18 +75,22 @@ export default {
   left: 50%;
   z-index: 1917;
   padding: 0.5em 1em;
+  line-height: 1em;
   border-radius: 0.25em;
   background-color: #edf2fc;
   min-width: 380px;
   max-width: 690px;
 }
 
-.gulu-toast-bottom {
-  bottom: 10px;
-  @include slideFun(bottom);
-}
-.gulu-toast-top {
-  top: 10px;
-  @include slideFun(top);
+@for $i from 1 through 6 {
+  .gulu-toast-top-#{$i} {
+    top: -2em + $i * 2.7;
+    @include slideFun(top);
+  }
+
+  .gulu-toast-bottom-#{$i} {
+    bottom: -2em + $i * 2.7;
+    @include slideFun(bottom);
+  }
 }
 </style>
