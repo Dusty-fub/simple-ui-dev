@@ -3,8 +3,8 @@
 </demo>
 <template>
   <Button @click="showToast1">打开消息提示</Button>
-  <Button @click="showToast2">打开消息提示</Button>
-  <Button @click="showToast3">打开消息提示</Button>
+  <Button @click="showToast2">提示，从底部出现</Button>
+  <Button @click="showToast3">提示，1s后消失</Button>
 </template>
 
 <script lang="ts">
@@ -39,7 +39,7 @@ export default {
       instance.ctx.$toast({
         msg: "这这是息提示这是一条消示",
         position: "bottom",
-        autoCloseSeconds: 2,
+        autoCloseSeconds: 1,
       });
     };
 

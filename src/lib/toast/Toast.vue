@@ -2,7 +2,7 @@
   <div class="gulu-toast" :class="classes">{{ msg }}</div>
 </template>
 <script lang="ts">
-import { getCurrentInstance, onMounted, reactive, ref } from "vue";
+import { getCurrentInstance, onMounted, onUnmounted, reactive, ref } from "vue";
 export default {
   props: {
     msg: {
@@ -31,7 +31,13 @@ export default {
       `gulu-toast-${props["field"]["position"]}-${props["field"]["toastAmount"]}`
     ] = true;
 
+    classes[`gulu-toast-${props["field"]["position"]}-enter`] = true;
+
     onMounted(() => {
+      setTimeout(() => {
+        classes[`gulu-toast-${props["field"]["position"]}-fade`] = true;
+      }, props["autoCloseSeconds"] * 1000 - 300);
+
       exeClose();
     });
 
@@ -48,7 +54,6 @@ export default {
 </script>
 <style lang="scss">
 @mixin slideFun($direction) {
-  transform: translateX(-50%);
   $tY: -100%;
   @if $direction == "bottom" {
     $tY: 100%;
@@ -56,23 +61,41 @@ export default {
     // todo
   }
 
-  @keyframes #{$direction} {
-    0% {
-      opacity: 0;
-      transform: translate3d(-50%, $tY, 0);
+  .gulu-toast-#{$direction}-enter {
+    @keyframes #{$direction}-enter {
+      0% {
+        opacity: 0;
+        transform: translate3d(-50%, $tY, 0);
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(-50%, 0, 0);
+      }
     }
-    100% {
-      opacity: 1;
-      transform: translate3d(-50%, 0, 0);
-    }
+
+    animation: #{$direction}-enter 300ms;
   }
 
-  animation: $direction 300ms;
+  .gulu-toast-#{$direction}-fade {
+    @keyframes #{$direction}-fade {
+      0% {
+        opacity: 1;
+        transform: translate3d(-50%, 0, 0);
+      }
+      100% {
+        opacity: 0;
+        transform: translate3d(-50%, $tY, 0);
+      }
+    }
+
+    animation: #{$direction}-fade 400ms;
+  }
 }
 
 .gulu-toast {
   position: fixed;
   left: 50%;
+  transform: translateX(-50%);
   z-index: 1917;
   padding: 0.5em 1em;
   line-height: 1em;
@@ -85,12 +108,12 @@ export default {
 @for $i from 1 through 6 {
   .gulu-toast-top-#{$i} {
     top: -2em + $i * 2.7;
-    @include slideFun(top);
   }
 
   .gulu-toast-bottom-#{$i} {
     bottom: -2em + $i * 2.7;
-    @include slideFun(bottom);
   }
 }
+@include slideFun(top);
+@include slideFun(bottom);
 </style>
