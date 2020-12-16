@@ -36,6 +36,7 @@ export function toast(options) {
     },
     onClose,
     type: options["type"],
+    isCenter: options["isCenter"],
     autoCloseSeconds: options.autoCloseSeconds,
   });
 

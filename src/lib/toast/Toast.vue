@@ -37,6 +37,10 @@ export default {
       type: String,
       default: "tip",
     },
+    isCenter: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, ctx) {
     let classes = reactive({});
@@ -46,6 +50,7 @@ export default {
     ] = true;
 
     classes[`gulu-toast-${props["field"]["position"]}-enter`] = true;
+    classes[`gulu-toast-Center`] = props["isCenter"];
 
     onMounted(() => {
       setTimeout(() => {
@@ -67,6 +72,29 @@ export default {
 };
 </script>
 <style lang="scss">
+.gulu-toast {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1917;
+  padding: 0.5em 1em;
+  line-height: 1em;
+  border-radius: 0.25em;
+  background-color: #edf2fc;
+  min-width: 380px;
+  max-width: 690px;
+}
+
+@for $i from 1 through 6 {
+  .gulu-toast-top-#{$i} {
+    top: -2em + $i * 2.7;
+  }
+
+  .gulu-toast-bottom-#{$i} {
+    bottom: -2em + $i * 2.7;
+  }
+}
+
 @mixin slideFun($direction) {
   $tY: -100%;
   @if $direction == "bottom" {
@@ -106,32 +134,14 @@ export default {
   }
 }
 
-.gulu-toast {
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1917;
-  padding: 0.5em 1em;
-  line-height: 1em;
-  border-radius: 0.25em;
-  background-color: #edf2fc;
-  min-width: 380px;
-  max-width: 690px;
-}
-
-@for $i from 1 through 6 {
-  .gulu-toast-top-#{$i} {
-    top: -2em + $i * 2.7;
-  }
-
-  .gulu-toast-bottom-#{$i} {
-    bottom: -2em + $i * 2.7;
-  }
-}
 @include slideFun(top);
 @include slideFun(bottom);
 
 .iconWrap {
   margin-right: 0.6em;
+}
+
+.gulu-toast-Center {
+  text-align: center;
 }
 </style>
