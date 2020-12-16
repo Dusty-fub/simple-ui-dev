@@ -9,6 +9,11 @@
     <span v-else>
       {{ msg }}
     </span>
+    <span v-if="showClose" class="closeBtn" @click="userClose">
+      <svg class="icon" aria-hidden="true">
+        <use :xlink:href="`#icon-close`"></use>
+      </svg>
+    </span>
   </div>
 </template>
 <script lang="ts">
@@ -46,6 +51,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    showClose: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, ctx) {
     let classes = reactive({});
@@ -59,6 +68,8 @@ export default {
 
     const htmlMsg = ref<HTMLSpanElement>();
 
+    let isAutoClose = !!props["autoCloseSeconds"];
+
     onMounted(() => {
       if (props["dangerouslyUseHTMLString"]) {
         htmlMsg.value.innerHTML = props["msg"];
@@ -68,17 +79,24 @@ export default {
         classes[`gulu-toast-${props["field"]["position"]}-fade`] = true;
       }, props["autoCloseSeconds"] * 1000 - 300);
 
-      exeClose();
+      exeAutoClose();
     });
 
-    const exeClose = () => {
+    const exeAutoClose = () => {
       if (props["autoCloseSeconds"]) {
         setTimeout(() => {
-          ctx.emit("close");
+          close();
         }, props["autoCloseSeconds"] * 1000);
       }
     };
-    return { classes, htmlMsg };
+    const userClose = () => {
+      close();
+      isAutoClose = false;
+    };
+    const close = () => {
+      isAutoClose && ctx.emit("close");
+    };
+    return { classes, htmlMsg, userClose };
   },
 };
 </script>
@@ -154,5 +172,11 @@ export default {
 
 .gulu-toast-Center {
   text-align: center;
+}
+
+.closeBtn {
+  position: absolute;
+  right: 0.5em;
+  cursor: pointer;
 }
 </style>

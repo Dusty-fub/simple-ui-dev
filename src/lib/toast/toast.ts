@@ -38,6 +38,7 @@ export function toast(options) {
     type: options["type"],
     isCenter: options["isCenter"],
     dangerouslyUseHTMLString: options["dangerouslyUseHTMLString"],
+    showClose: options["showClose"],
     autoCloseSeconds: options.autoCloseSeconds,
   });
 
