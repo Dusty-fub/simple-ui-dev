@@ -103,8 +103,6 @@ export default {
 <style lang="scss">
 .gulu-toast {
   position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
   z-index: 1917;
   padding: 0.5em 1em;
   line-height: 1em;
@@ -116,31 +114,59 @@ export default {
 
 @for $i from 1 through 6 {
   .gulu-toast-top-#{$i} {
+    left: 50%;
+    transform: translateX(-50%);
     top: -2em + $i * 2.7;
   }
 
   .gulu-toast-bottom-#{$i} {
+    left: 50%;
+    transform: translateX(-50%);
     bottom: -2em + $i * 2.7;
+  }
+
+  .gulu-toast-top-right-#{$i} {
+    top: -2em + $i * 2.7;
+    right: 1em;
+  }
+
+  .gulu-toast-bottom-right-#{$i} {
+    bottom: -2em + $i * 2.7;
+    right: 1em;
+  }
+
+  .gulu-toast-top-left-#{$i} {
+    top: -2em + $i * 2.7;
+    left: 1em;
+  }
+
+  .gulu-toast-bottom-left-#{$i} {
+    bottom: -2em + $i * 2.7;
+    left: 1em;
   }
 }
 
 @mixin slideFun($direction) {
   $tY: -100%;
+  $tX: -50%;
   @if $direction == "bottom" {
     $tY: 100%;
-  } @else if $direction == "middle" {
-    // todo
+  } @else if ($direction == "bottom-left" or $direction == "bottom-right") {
+    $tY: 100%;
+    $tX: 0;
+  } @else if $direction != "top" {
+    $tX: 0;
   }
 
   .gulu-toast-#{$direction}-enter {
     @keyframes #{$direction}-enter {
       0% {
         opacity: 0;
-        transform: translate3d(-50%, $tY, 0);
+        transform: translate3d($tX, $tY, 0);
       }
       100% {
         opacity: 1;
-        transform: translate3d(-50%, 0, 0);
+        transform: translate3d($tX, 0, 0);
       }
     }
 
@@ -151,11 +177,11 @@ export default {
     @keyframes #{$direction}-fade {
       0% {
         opacity: 1;
-        transform: translate3d(-50%, 0, 0);
+        transform: translate3d($tX, 0, 0);
       }
       100% {
         opacity: 0;
-        transform: translate3d(-50%, $tY, 0);
+        transform: translate3d($tX, $tY, 0);
       }
     }
 
@@ -165,6 +191,10 @@ export default {
 
 @include slideFun(top);
 @include slideFun(bottom);
+@include slideFun("top-left");
+@include slideFun("top-right");
+@include slideFun("bottom-left");
+@include slideFun("bottom-right");
 
 .iconWrap {
   margin-right: 0.6em;
