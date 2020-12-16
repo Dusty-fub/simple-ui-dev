@@ -11,7 +11,7 @@ export function toast(options) {
     msg = options;
   } else {
     msg = options.msg;
-    position = options["position"];
+    options["position"] && (position = options["position"]);
   }
 
   if (fields[`${position}Amount`]) {
@@ -35,7 +35,7 @@ export function toast(options) {
       toastAmount: fields[`${position}Amount`],
     },
     onClose,
-
+    type: options["type"],
     autoCloseSeconds: options.autoCloseSeconds,
   });
 

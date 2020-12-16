@@ -1,7 +1,17 @@
 <template>
-  <div class="gulu-toast" :class="classes">{{ msg }}</div>
+  <div class="gulu-toast" :class="classes">
+    <span class="iconWrap">
+      <svg class="icon" aria-hidden="true">
+        <use :xlink:href="`#icon-${type}`"></use>
+      </svg>
+    </span>
+    <span>
+      {{ msg }}
+    </span>
+  </div>
 </template>
 <script lang="ts">
+import "../svg.js";
 import { getCurrentInstance, onMounted, onUnmounted, reactive, ref } from "vue";
 export default {
   props: {
@@ -22,6 +32,10 @@ export default {
       validator(value) {
         return value === false || (typeof value === "number" && value > 0);
       },
+    },
+    type: {
+      type: String,
+      default: "tip",
     },
   },
   setup(props, ctx) {
@@ -116,4 +130,8 @@ export default {
 }
 @include slideFun(top);
 @include slideFun(bottom);
+
+.iconWrap {
+  margin-right: 0.6em;
+}
 </style>
