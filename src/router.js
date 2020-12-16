@@ -68,6 +68,10 @@ export const router = createRouter({
           path: "toast",
           component: () => import("./components/demoMap/ToastDemo.vue"),
         },
+        {
+          path: "popover",
+          component: () => import("./components/demoMap/PopoverDemo.vue"),
+        },
       ],
     },
   ],

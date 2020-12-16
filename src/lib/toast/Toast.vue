@@ -17,6 +17,10 @@
   </div>
 </template>
 <script lang="ts">
+/**
+ * title ?
+ */
+
 import "../svg.js";
 import { getCurrentInstance, onMounted, onUnmounted, reactive, ref } from "vue";
 export default {

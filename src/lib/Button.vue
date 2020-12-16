@@ -1,26 +1,13 @@
-<template >
-  <button
-    v-bind="$attrs"
-    class="gulu-button"
-    :class="classes"
-  >
-    <span
-      v-if='lineLoading'
-      class="gulu-loadingIndicator"
-      :class="iconClasses"
-    ></span>
+<template>
+  <button v-bind="$attrs" class="gulu-button" :class="classes">
+    <span v-if="lineLoading" class="gulu-loadingIndicator" :class="iconClasses"></span>
 
     <span
-      v-if='(icon||dotLoading)&&
-            (iconPosition==="left"||iconPosition==="right")'
+      v-if="(icon || dotLoading) && (iconPosition === 'left' || iconPosition === 'right')"
       :class="iconClasses"
     >
-      <svg
-        class="icon"
-        :class="{iconLoading:dotLoading}"
-        aria-hidden="true"
-      >
-        <use :xlink:href="`#icon-${dotLoading?'loading':icon}`"></use>
+      <svg class="icon" :class="{ iconLoading: dotLoading }" aria-hidden="true">
+        <use :xlink:href="`#icon-${dotLoading ? 'loading' : icon}`"></use>
       </svg>
     </span>
 
@@ -29,18 +16,11 @@
     </span>
   </button>
 </template>
-<script lang="ts" >
+<script lang="ts">
 import "./svg.js";
-import {
-  computed,
-  onMounted,
-  reactive,
-  ref,
-  watch,
-  watchEffect,
-  nextTick,
-} from "vue";
+import { computed, onMounted, reactive, ref, watch, watchEffect, nextTick } from "vue";
 export default {
+  name: "gulu-button",
   inheritAttrs: false,
   props: {
     theme: { type: String, default: "button" },
