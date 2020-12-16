@@ -37,6 +37,7 @@ export function toast(options) {
     onClose,
     type: options["type"],
     isCenter: options["isCenter"],
+    dangerouslyUseHTMLString: options["dangerouslyUseHTMLString"],
     autoCloseSeconds: options.autoCloseSeconds,
   });
 

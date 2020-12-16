@@ -5,7 +5,8 @@
         <use :xlink:href="`#icon-${type}`"></use>
       </svg>
     </span>
-    <span>
+    <span v-if="dangerouslyUseHTMLString" ref="htmlMsg"> </span>
+    <span v-else>
       {{ msg }}
     </span>
   </div>
@@ -41,6 +42,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    dangerouslyUseHTMLString: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, ctx) {
     let classes = reactive({});
@@ -52,7 +57,13 @@ export default {
     classes[`gulu-toast-${props["field"]["position"]}-enter`] = true;
     classes[`gulu-toast-Center`] = props["isCenter"];
 
+    const htmlMsg = ref<HTMLSpanElement>();
+
     onMounted(() => {
+      if (props["dangerouslyUseHTMLString"]) {
+        htmlMsg.value.innerHTML = props["msg"];
+      }
+
       setTimeout(() => {
         classes[`gulu-toast-${props["field"]["position"]}-fade`] = true;
       }, props["autoCloseSeconds"] * 1000 - 300);
@@ -67,7 +78,7 @@ export default {
         }, props["autoCloseSeconds"] * 1000);
       }
     };
-    return { classes };
+    return { classes, htmlMsg };
   },
 };
 </script>
