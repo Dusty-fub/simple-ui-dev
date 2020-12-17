@@ -4,10 +4,11 @@
       class="gulu-popover-toggle"
       tabindex="0"
       hidefocus="true"
-      @click="clickToggle"
-      @focus="focusToggle"
-      @blur="blurToggle"
-      @hover="toggleContent"
+      @click="toggleContent('click')"
+      @focus="toggleContent('focus')"
+      @blur="toggleContent('focus')"
+      @mouseover="toggleContent('hover')"
+      @mouseout="toggleContent('hover')"
     >
       <slot></slot>
     </span>
@@ -30,25 +31,20 @@ export default {
     },
   },
   setup(props, ctx) {
-    if (ctx.slots.default()) {
-    }
     const isContentVisible = ref(false);
-    const clickToggle = () => {
-      props["trigger"] === "click" && toggleContent();
+
+    const toggleContent = (type) => {
+      props["trigger"] === type && (isContentVisible.value = !isContentVisible.value);
     };
-    const focusToggle = () => {
-      props["trigger"] === "focus" && toggleContent();
-    };
-    const blurToggle = () => {
-      props["trigger"] === "focus" && toggleContent();
-    };
-    const toggleContent = () => {
-      isContentVisible.value = !isContentVisible.value;
-    };
+
     const classes = reactive({});
     classes[`gulu-popover-content-${props["position"]}`] = true;
 
-    return { clickToggle, blurToggle, focusToggle, isContentVisible, classes };
+    return {
+      toggleContent,
+      isContentVisible,
+      classes,
+    };
   },
 };
 </script>
