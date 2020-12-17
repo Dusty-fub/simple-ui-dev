@@ -4,6 +4,7 @@
 <template>
   <Popover position="top">
     <Button>上方弹出</Button>
+    <template v-slot:content> 要弹出的内容 </template>
   </Popover>
 </template>
 <script lang="ts">
