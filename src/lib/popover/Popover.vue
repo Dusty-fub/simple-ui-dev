@@ -1,6 +1,14 @@
 <template>
   <div class="gulu-popover">
-    <span @click="toggleContent">
+    <span
+      class="gulu-popover-toggle"
+      tabindex="0"
+      hidefocus="true"
+      @click="clickToggle"
+      @focus="focusToggle"
+      @blur="blurToggle"
+      @hover="toggleContent"
+    >
       <slot></slot>
     </span>
     <div v-if="isContentVisible" :class="classes">
@@ -16,18 +24,31 @@ export default {
       type: String,
       default: "top",
     },
+    trigger: {
+      type: String,
+      default: "click",
+    },
   },
   setup(props, ctx) {
     if (ctx.slots.default()) {
     }
     const isContentVisible = ref(false);
+    const clickToggle = () => {
+      props["trigger"] === "click" && toggleContent();
+    };
+    const focusToggle = () => {
+      props["trigger"] === "focus" && toggleContent();
+    };
+    const blurToggle = () => {
+      props["trigger"] === "focus" && toggleContent();
+    };
     const toggleContent = () => {
       isContentVisible.value = !isContentVisible.value;
     };
     const classes = reactive({});
     classes[`gulu-popover-content-${props["position"]}`] = true;
 
-    return { toggleContent, isContentVisible, classes };
+    return { clickToggle, blurToggle, focusToggle, isContentVisible, classes };
   },
 };
 </script>
@@ -35,6 +56,10 @@ export default {
 .gulu-popover {
   display: inline-block;
   position: relative;
+
+  .gulu-popover-toggle {
+    outline: 0;
+  }
 
   @mixin popover-position($position) {
     $contrastPosition: "bottom";
