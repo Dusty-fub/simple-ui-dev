@@ -18,7 +18,6 @@ export default {
     },
   },
   setup(props, ctx) {
-    // console.log(ctx.slots.default());
     if (ctx.slots.default()) {
     }
     const isContentVisible = ref(false);
@@ -26,8 +25,7 @@ export default {
       isContentVisible.value = !isContentVisible.value;
     };
     const classes = reactive({});
-    classes["gulu-popover-content-bottom"] = props.position === "bottom";
-    classes["gulu-popover-content-top"] = props.position === "top";
+    classes[`gulu-popover-content-${props["position"]}`] = true;
 
     return { toggleContent, isContentVisible, classes };
   },
@@ -35,70 +33,70 @@ export default {
 </script>
 <style lang="scss">
 .gulu-popover {
+  display: inline-block;
   position: relative;
 
-  > .gulu-popover-content-top {
-    position: absolute;
-    top: 0px;
-    transform: translateY(-120%);
-    padding: 0.5em;
-    background-color: white;
-    border: 1px solid #333;
-    border-radius: 0.2em;
-    box-shadow: 0 0 9px #ccc;
-
-    &::before,
-    &::after {
-      content: "";
-      display: block;
-      border: 7px solid transparent;
-      width: 0;
-      height: 0;
+  @mixin popover-position($position) {
+    $contrastPosition: "bottom";
+    $tX: 0;
+    $tY: 0;
+    @if $position == "top" {
+      $tY: -120%;
+    } @else if $position == "bottom" {
+      $contrastPosition: "top";
+      $tY: 120%;
+    } @else if $position == "left" {
+      $tY: 0;
+      $tX: -100%;
+      $contrastPosition: "right";
+    } @else if $position== "right" {
+      $tX: 100%;
+      $tY: 0;
+      $contrastPosition: "left";
+    }
+    .gulu-popover-content-#{$position} {
       position: absolute;
-      left: 30%;
-    }
-    &::before {
-      border-bottom: none;
-      border-top-color: black;
-      top: 100%;
-    }
-    &::after {
-      border-bottom: none;
-      border-top-color: white;
-      top: calc(100% - 1px);
+      top: 0;
+      #{$position}: 0px;
+      transform: translate3d($tX, $tY, 0);
+      padding: 0.5em;
+      background-color: white;
+      border: 1px solid #333;
+      border-radius: 0.2em;
+      box-shadow: 0 0 9px #ccc;
+
+      &::before,
+      &::after {
+        content: "";
+        display: block;
+        border: 7px solid transparent;
+        width: 0;
+        height: 0;
+        position: absolute;
+
+        @if $position != "right" {
+          left: 30%;
+        }
+        @if $position != "bottom" {
+          top: 20%;
+        }
+      }
+      &::before {
+        border-#{$contrastPosition}: none;
+        border-#{$position}-color: black;
+        #{$position}: 100%;
+      }
+      &::after {
+        border-#{$contrastPosition}: none;
+        border-#{$position}-color: white;
+        #{$position}: calc(100% - 1px);
+      }
     }
   }
 
-  > .gulu-popover-content-bottom {
-    position: absolute;
-    bottom: 0px;
-    transform: translateY(120%);
-    padding: 0.5em;
-    background-color: white;
-    border: 1px solid #333;
-    border-radius: 0.2em;
-    box-shadow: 0 0 9px #ccc;
-
-    &::before,
-    &::after {
-      content: "";
-      display: block;
-      border: 7px solid transparent;
-      width: 0;
-      height: 0;
-      position: absolute;
-      left: 30%;
-    }
-    &::before {
-      border-top: none;
-      border-bottom-color: black;
-      bottom: 100%;
-    }
-    &::after {
-      border-top: none;
-      border-bottom-color: white;
-      bottom: calc(100% - 1px);
-    }
-  }
+  @include popover-position(top);
+  @include popover-position(bottom);
+  @include popover-position(left);
+  @include popover-position(right);
 }
 </style>
