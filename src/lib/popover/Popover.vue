@@ -41,10 +41,10 @@ export default {
     $tX: 0;
     $tY: 0;
     @if $position == "top" {
-      $tY: -120%;
+      $tY: -100%;
     } @else if $position == "bottom" {
       $contrastPosition: "top";
-      $tY: 120%;
+      $tY: 100%;
     } @else if $position == "left" {
       $tY: 0;
       $tX: -100%;
@@ -56,9 +56,15 @@ export default {
     }
     .gulu-popover-content-#{$position} {
       position: absolute;
-      top: 0;
-      #{$position}: 0px;
-      transform: translate3d($tX, $tY, 0);
+
+      @if $position != bottom {
+        transform: translate3d($tX, $tY, 0);
+        top: 0;
+      }
+      @if $position == "top" {
+        top: -7px;
+      }
+
       padding: 0.5em;
       background-color: white;
       border: 1px solid #333;
@@ -78,7 +84,7 @@ export default {
           left: 30%;
         }
         @if $position != "bottom" {
-          top: 20%;
+          top: 13px;
         }
       }
       &::before {
