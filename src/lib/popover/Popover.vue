@@ -105,7 +105,7 @@ export default {
           left: 30%;
         }
         @if $position != "bottom" {
-          top: 13px;
+          top: 9px;
         }
       }
       &::before {

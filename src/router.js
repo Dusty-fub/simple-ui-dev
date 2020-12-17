@@ -72,6 +72,10 @@ export const router = createRouter({
           path: "popover",
           component: () => import("./components/demoMap/PopoverDemo.vue"),
         },
+        {
+          path: "collapse",
+          component: () => import("./components/demoMap/CollapseDemo.vue"),
+        },
       ],
     },
   ],

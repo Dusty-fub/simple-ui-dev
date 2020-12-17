@@ -72,6 +72,10 @@ export default {
         link: "popover",
         text: "Popover 弹出层",
       },
+      {
+        link: "collapse",
+        text: "Collapse",
+      },
     ]);
 
     return { asideVi, componentsLis };
