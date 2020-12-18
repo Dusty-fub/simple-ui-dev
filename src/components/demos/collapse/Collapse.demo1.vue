@@ -3,11 +3,14 @@
 </demo>
 <template>
   <Collapse>
-    <CollapseItem title="title1">
+    <CollapseItem title="title1" :isUnfold="true">
       <div>
         有一个关于被怀疑偷窃的工人的老故事：每天傍晚，在他离开工厂的时候，他推
         在前面得手推车都会受到细致的检查。守卫什么也找不到；它永远是空的。最终，
         他恍然大悟：工人偷的就是手推车本身。
+      </div>
+      <div>
+        苏州老鳏，人问：“有了令郎么？”答云：“提起小儿，其实心酸。前面妻祖与妻父定亲，说得来垂成了，被一个天杀的用计矗退了。致使妻父不曾娶得妻母，妻母不曾养得贱内，至今小儿杳然。”
       </div>
     </CollapseItem>
     <CollapseItem title="title2">
@@ -37,6 +40,10 @@
  *  参数：title
  *  类型：String
  *  默认值：'标题'
+ *
+ *  参数：isUnfold
+ *  类型：Boolean
+ *  默认值：false
  */
 import Collapse from "/src/lib/collapse/Collapse.vue";
 import CollapseItem from "/src/lib/collapse/CollapseItem.vue";
