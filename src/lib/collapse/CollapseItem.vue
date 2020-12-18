@@ -9,7 +9,7 @@
   </article>
 </template>
 <script lang="ts">
-import { onMounted, reactive, ref } from "vue";
+import { onMounted, reactive, ref, watch, watchEffect } from "vue";
 export default {
   props: {
     title: {
@@ -20,10 +20,29 @@ export default {
       type: Boolean,
       default: false,
     },
+    autoClose: {
+      type: Boolean,
+    },
+    duration: {
+      type: Number,
+      default: 1000,
+    },
+    accordion: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, ctx) {
     const isContentVisible = ref(props.isUnfold);
     const toggleContent = () => {
+      if (props.accordion) {
+        ctx.emit("accordionToggle");
+      }
+
+      unFold();
+    };
+
+    const unFold = () => {
       isContentVisible.value && (guluCollapseContent.value.style.height = "0px");
       isContentVisible.value = !isContentVisible.value;
 
@@ -37,6 +56,15 @@ export default {
         }
       });
     };
+
+    watch(
+      () => props.autoClose,
+      (autoClose) => {
+        if (autoClose === true && isContentVisible.value === true) {
+          unFold();
+        }
+      }
+    );
 
     const guluCollapseContent = ref(null);
 

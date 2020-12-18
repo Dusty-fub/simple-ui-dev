@@ -1,8 +1,8 @@
 <demo>
-    示例 1
+    示例 2 手风琴
 </demo>
 <template>
-  <Collapse>
+  <Collapse :accordion="true">
     <CollapseItem title="title1" :isUnfold="true">
       <div>
         有一个关于被怀疑偷窃的工人的老故事：每天傍晚，在他离开工厂的时候，他推
@@ -36,17 +36,12 @@
 </template>
 <script lang="ts">
 /**
- *  参数：title
- *  类型：String
- *  默认值：'标题'
- *
- *  参数：isUnfold
+ *  参数：accordion
  *  类型：Boolean
- *  说明：模块是否展开显示内容
+ *  说明：是否开启“手风琴模式”（每次只能展示一个模块）
  *  默认值：false
  *
  */
-
 import Collapse from "/src/lib/collapse/Collapse.vue";
 import CollapseItem from "/src/lib/collapse/CollapseItem.vue";
 export default {
