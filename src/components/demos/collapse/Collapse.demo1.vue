@@ -17,9 +17,19 @@
         医生说：“你不是很清楚你不是稻穗而是人吗？” 病人说：“我当然知道，可是鸡知道吗？”
       </div>
     </CollapseItem>
-    <CollapseItem title="title3"></CollapseItem>
-    <CollapseItem title="title4"></CollapseItem>
-    <CollapseItem title="title5"></CollapseItem>
+    <CollapseItem title="title3">
+      <div>
+        三个朋友在酒吧喝酒；第一个说“在我身上发生了一件恐怖的事，在旅行社，我想说‘一张去匹兹堡的票！’可我说的是“一张去兹匹堡的票！’”
+        第二个人应道：“那不算什么！早饭时，我想和我老婆说‘亲爱的，能把糖递给我吗？’可我说的是‘你这个婊子，你毁了我全部的生活！’”
+        第三个总结道，“还是先听听我身上发生的事吧。攒了一夜的勇气，我打算在早饭的时候，和我老婆说你对你老婆说过的那些话，可最终我说出来的是，‘亲爱的，能把糖递给我吗？’”
+      </div>
+    </CollapseItem>
+    <CollapseItem title="title4">
+      <div>
+        “行李架上的包裹是什么？” “是麦菇芬。” “那是干什么用的？” “杀死高原上的狮子。”
+        “可高原上没有狮子。” “你看，麦菇芬起作用了。”
+      </div>
+    </CollapseItem>
   </Collapse>
 </template>
 <script lang="ts">
