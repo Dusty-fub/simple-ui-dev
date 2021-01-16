@@ -8,8 +8,8 @@
 <script lang="ts">
 import Demo from "/src/components/Demo.vue";
 import BottomNav from "/src/components/BottomNav.vue";
-import SwitchDemo1 from "/src/components/demos/Switch.demo1.vue";
-import SwitchDemo2 from "/src/components/demos/Switch.demo2.vue";
+import SwitchDemo1 from "/src/components/demos/switch/Switch.demo1.vue";
+import SwitchDemo2 from "/src/components/demos/switch/Switch.demo2.vue";
 export default {
   name: "SwitchDemo",
   setup() {

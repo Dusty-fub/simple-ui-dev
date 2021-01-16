@@ -1,5 +1,5 @@
 <demo>
-    示例 1
+    示例 2
 </demo>
 <template>
   <Button @click="showToast1">成功</Button>

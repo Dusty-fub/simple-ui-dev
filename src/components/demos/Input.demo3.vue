@@ -1,9 +1,8 @@
 <demo>
-  event
+  双向绑定
 </demo>
 <template>
   <Input
-    value="zzz"
     v-model='msg'
     placeholder="双向绑定"
   />

@@ -1,5 +1,5 @@
 <demo>
-demo 1
+  demo 
 </demo>
 <template>
   <Input />
