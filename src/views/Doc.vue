@@ -77,7 +77,7 @@ export default {
       },
       {
         link: "collapse",
-        text: "Collapse",
+        text: "Collapse折叠面板",
       },
     ]);
 
@@ -92,57 +92,57 @@ export default {
 
 <style lang="scss" scoped>
 .content {
-  flex : 1;
-  overflow : auto;
-  display : flex;
-  align-items : flex-start;
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  align-items: flex-start;
 
   aside {
-    background-color : #B097A1;
-    width : 150px;
-    margin-right : 10px;
-    box-shadow : 0 0 10px rgba(200, 175, 208, .7);
-    height : 100%;
-    max-height : 100%;
-    overflow : auto;
+    background-color: #b097a1;
+    width: 150px;
+    margin-right: 10px;
+    box-shadow: 0 0 10px rgba(200, 175, 208, 0.7);
+    height: 100%;
+    max-height: 100%;
+    overflow: auto;
 
     > h2 {
-      padding : 16px;
-      margin-bottom : 4px;
+      padding: 16px;
+      margin-bottom: 4px;
     }
 
     > ol {
       > li {
         > a {
-          text-decoration : none;
-          line-height : 21px;
-          display : block;
-          padding : 4px 16px;
+          text-decoration: none;
+          line-height: 21px;
+          display: block;
+          padding: 4px 16px;
+          font-size: 14px;
         }
         a:hover {
-          color : #FCC5BA;
+          color: #fcc5ba;
         }
         .router-link-active {
-          color : #FCC5BA;
-          box-shadow : 0 0 2px #FCC5BA;
+          color: #fcc5ba;
+          box-shadow: 0 0 2px #fcc5ba;
         }
       }
     }
 
     @media (max-width: 500px) {
-      position : fixed;
-      left : 0;
-      z-index : 1;
+      position: fixed;
+      left: 0;
+      z-index: 1;
     }
   }
 
   main {
-    flex : 1;
-    height : 100%;
-    max-height : 100%;
-    overflow : auto;
-    margin-left : .5em;
+    flex: 1;
+    height: 100%;
+    max-height: 100%;
+    overflow: auto;
+    margin-left: 0.5em;
   }
 }
-
 </style>

@@ -1,6 +1,10 @@
 <template>
+  <h1>Tabs 组件 示例</h1>
   <Demo :component='TabsDemo1' />
-  <BottomNav leftJump='/doc/dialog' />
+  <BottomNav
+    leftJump='/doc/dialog'
+    rightJump='/doc/input'
+  />
 </template>
 
 <script lang='ts'>

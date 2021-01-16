@@ -5,7 +5,6 @@
     <pre><code>npm install --save rime-simple-ui</code></pre>
     <p>或</p>
     <pre><code>yarn add rime-simple-ui</code></pre>
-
     <p>
       下一节：<a href="#/doc/start">开始使用</a>
     </p>
@@ -15,3 +14,4 @@
 <script>
 export default {};
 </script>
+

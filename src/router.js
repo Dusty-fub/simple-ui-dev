@@ -1,11 +1,8 @@
 import { createWebHashHistory, createRouter } from "vue-router";
 import Doc from "./views/Doc.vue";
-import SwitchDemo from "./components/SwitchDemo.vue";
-import TabsDemo from "./components/TabsDemo.vue";
+
 import DialogDemo from "./components/DialogDemo.vue";
-import ButtonDemo from "./components/ButtonDemo.vue";
-import InputDemo from "./components/InputDemo.vue";
-import GridDemo from "./components/GridDemo.vue";
+
 import Intro from "./views/Intro.vue";
 import Start from "./views/Start.vue";
 import Install from "./views/Install.vue";
@@ -38,31 +35,31 @@ export const router = createRouter({
         },
         {
           path: "switch",
-          component: SwitchDemo,
+          component: () => import("./components/demoMap/SwitchDemo.vue"),
         },
         {
           path: "button",
-          component: ButtonDemo,
+          component: () => import("./components/demoMap/ButtonDemo.vue"),
         },
         {
           path: "dialog",
-          component: DialogDemo,
+          component: () => import("./components/demoMap/DialogDemo.vue"),
         },
         {
           path: "Tabs",
-          component: TabsDemo,
+          component: () => import("./components/demoMap/TabsDemo.vue"),
         },
         {
           path: "Input",
-          component: InputDemo,
+          component: () => import("./components/demoMap/InputDemo.vue"),
         },
         {
           path: "grid",
-          component: GridDemo,
+          component: () => import("./components/demoMap/GridDemo.vue"),
         },
         {
           path: "layout",
-          component: () => import("./components/LayoutDemo.vue"),
+          component: () => import("./components/demoMap/LayoutDemo.vue"),
         },
         {
           path: "toast",

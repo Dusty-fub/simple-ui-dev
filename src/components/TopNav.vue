@@ -10,7 +10,7 @@
     </router-link>
     <ul class="menu">
       <li>
-        <router-link to='/doc'>文档</router-link>
+        <router-link to='/doc/intro'>文档</router-link>
       </li>
     </ul>
     <span
@@ -50,75 +50,76 @@ export default {
 
 <style lang="scss" scoped>
 .topnav {
-  display : flex;
-  padding : 16px;
-  position : relative;
-  justify-content : center;
-  align-items : center;
-  background-color : #7680C2;
-  box-shadow : 0px .2px 9px hsl(90, 0%, 50%);
-  z-index : 10;
+  display: flex;
+  padding: 16px;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-color: #7680c2;
+  box-shadow: 0px 0.2px 9px hsl(90, 0%, 50%);
+  z-index: 10;
 
   > .logo {
-    max-width : 6em;
-    margin-right : auto;
-    position : relative;
+    max-width: 6em;
+    margin-right: auto;
+    position: relative;
 
     .icon {
-      position : absolute;
-      bottom : -1em;
-      width : 2em;
-      height : 2em;
-      transform : translateX(-50%);
+      position: absolute;
+      bottom: -1em;
+      width: 2em;
+      height: 2em;
     }
   }
 
   > .menu {
-    display : flex;
-    white-space : nowrap;
-    flex-wrap : nowrap;
+    display: flex;
+    white-space: nowrap;
+    flex-wrap: nowrap;
 
     > li {
-      margin : 0 1em;
+      margin: 0 1em;
       a {
-        text-decoration : none;
+        text-decoration: none;
       }
       a:hover {
-        color : #FCC5BA;
+        color: #fcc5ba;
       }
     }
   }
 
   > .toggleAsideMenu {
-    display : none;
-    width : 24px;
-    height : 24px;
-    position : absolute;
-    left : 16px;
-    top : 50%;
-    transform : translateY(-50%);
+    display: none;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
     .icon {
-      width : 24px;
-      height : 24px;
+      width: 24px;
+      height: 24px;
     }
   }
 
   @media (max-width: 500px) {
     & {
-      padding : 1.6em 0;
+      padding: 1.6em 0;
     }
     > .menu {
-      display : none;
+      display: none;
     }
 
     > .logo {
-      margin : 0 auto;
+      margin: 0 auto;
+      .icon {
+        transform: translateX(-50%);
+      }
     }
 
     > .toggleAsideMenu {
-      display : inline-block;
+      display: inline-block;
     }
   }
 }
-
 </style>

@@ -5,3 +5,5 @@ dist
 *.local
 yarn-error.log
 .vscode
+
+build.sh

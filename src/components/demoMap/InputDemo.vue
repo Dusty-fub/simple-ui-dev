@@ -1,10 +1,11 @@
 <template>
+  <h1>Input 组件示例</h1>
   <Demo :component="InputDemo1" />
   <Demo :component="InputDemo2" />
   <Demo :component="InputDemo3" />
   <BottomNav
     leftJump='/doc/tabs'
-    rightJump=''
+    rightJump='/doc/grid'
   />
 </template>
 <script lang='ts'>

@@ -1,4 +1,5 @@
 <template>
+  <h1>Dialog 组件示例</h1>
   <Demo :component="DialogDemo1" />
   <Demo :component="DialogDemo2" />
   <BottomNav

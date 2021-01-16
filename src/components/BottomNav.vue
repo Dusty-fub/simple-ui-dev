@@ -20,6 +20,12 @@ export default {
   },
   setup() {
     const aTexts = {
+      "/doc/collapse": "collapse 折叠面板",
+      "/doc/popover": "popover弹出层",
+      "/doc/toast": "toast弹框提示",
+      "/doc/layout": "layout布局",
+      "/doc/grid": "grid栅格",
+      "/doc/input": "input组件",
       "/doc/dialog": "dialog组件",
       "/doc/switch": "switch组件",
       "/doc/tabs": "tabs组件",
@@ -34,12 +40,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 .bottom-nav {
-  display : flex;
-  justify-content : space-between;
+  display: flex;
+  justify-content: space-between;
   > a {
-    margin : 0 30px 70px;
-    text-decoration : none;
+    margin: 0 30px 70px;
+    text-decoration: none;
   }
 }
-
 </style>
