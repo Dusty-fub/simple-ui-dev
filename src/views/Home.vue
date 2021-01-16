@@ -3,7 +3,7 @@
     <div class="topNavAndBanner">
       <TopNav />
       <div class="banner">
-        <h1>ui</h1>
+        <h1>My UI</h1>
         <h2>一个框架</h2>
         <p class="actions">
           <a href="#">github</a>
@@ -18,7 +18,7 @@
             <use xlink:href="#icon-Vue"></use>
           </svg>
           <h3>基于 vue3</h3>
-          <p>骄傲地使用了 Vue 3 Composition API</p>
+          <p>使用了 Vue 3 Composition API</p>
         </li>
         <li>
           <svg class="icon">

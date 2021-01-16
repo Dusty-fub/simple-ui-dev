@@ -5,7 +5,7 @@
       to='/home'
     >
       <svg class="icon">
-        <use xlink:href="#icon-simple-point"></use>
+        <use xlink:href="#icon-rhombus"></use>
       </svg>
     </router-link>
     <ul class="menu">
@@ -21,7 +21,6 @@
       <svg class="icon">
         <use xlink:href="#icon-menu"></use>
       </svg>
-
     </span>
   </div>
 </template>
@@ -51,52 +50,75 @@ export default {
 
 <style lang="scss" scoped>
 .topnav {
-  display: flex;
-  padding: 16px;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  background-color: hsl(90, 70%, 60%);
-  box-shadow: 0px 0.2px 9px hsl(90, 0%, 50%);
-  z-index: 10;
+  display : flex;
+  padding : 16px;
+  position : relative;
+  justify-content : center;
+  align-items : center;
+  background-color : #7680C2;
+  box-shadow : 0px .2px 9px hsl(90, 0%, 50%);
+  z-index : 10;
 
   > .logo {
-    max-width: 6em;
-    margin-right: auto;
+    max-width : 6em;
+    margin-right : auto;
+    position : relative;
+
+    .icon {
+      position : absolute;
+      bottom : -1em;
+      width : 2em;
+      height : 2em;
+      transform : translateX(-50%);
+    }
   }
 
   > .menu {
-    display: flex;
-    white-space: nowrap;
-    flex-wrap: nowrap;
+    display : flex;
+    white-space : nowrap;
+    flex-wrap : nowrap;
 
     > li {
-      margin: 0 1em;
+      margin : 0 1em;
+      a {
+        text-decoration : none;
+      }
+      a:hover {
+        color : #FCC5BA;
+      }
     }
   }
 
   > .toggleAsideMenu {
-    display: none;
-    width: 24px;
-    height: 24px;
-    position: absolute;
-    left: 16px;
-    top: 50%;
-    transform: translateY(-50%);
+    display : none;
+    width : 24px;
+    height : 24px;
+    position : absolute;
+    left : 16px;
+    top : 50%;
+    transform : translateY(-50%);
+    .icon {
+      width : 24px;
+      height : 24px;
+    }
   }
 
   @media (max-width: 500px) {
+    & {
+      padding : 1.6em 0;
+    }
     > .menu {
-      display: none;
+      display : none;
     }
 
     > .logo {
-      margin: 0 auto;
+      margin : 0 auto;
     }
 
     > .toggleAsideMenu {
-      display: inline-block;
+      display : inline-block;
     }
   }
 }
+
 </style>

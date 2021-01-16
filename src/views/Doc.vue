@@ -16,7 +16,10 @@
       </ol>
       <h2>组件列表</h2>
       <ol>
-        <li v-for="item in componentsLis" :key="item.link">
+        <li
+          v-for="item in componentsLis"
+          :key="item.link"
+        >
           <router-link :to="'/doc/' + item.link">{{ item.text }}</router-link>
         </li>
       </ol>
@@ -89,51 +92,57 @@ export default {
 
 <style lang="scss" scoped>
 .content {
-  flex: 1;
-  overflow: auto;
-  display: flex;
-  align-items: flex-start;
+  flex : 1;
+  overflow : auto;
+  display : flex;
+  align-items : flex-start;
 
   aside {
-    background-color: hsl(180, 70%, 50%);
-    width: 150px;
-    height: 100%;
-    max-height: 100%;
-    overflow: auto;
+    background-color : #B097A1;
+    width : 150px;
+    margin-right : 10px;
+    box-shadow : 0 0 10px rgba(200, 175, 208, .7);
+    height : 100%;
+    max-height : 100%;
+    overflow : auto;
 
     > h2 {
-      padding: 16px;
-      margin-bottom: 4px;
+      padding : 16px;
+      margin-bottom : 4px;
     }
 
     > ol {
       > li {
         > a {
-          line-height: 21px;
-          display: block;
-          padding: 4px 16px;
+          text-decoration : none;
+          line-height : 21px;
+          display : block;
+          padding : 4px 16px;
         }
-
+        a:hover {
+          color : #FCC5BA;
+        }
         .router-link-active {
-          text-decoration: underline;
-          color: hsl(260, 10%, 50%);
-          background-color: hsl(0, 2%, 98%);
+          color : #FCC5BA;
+          box-shadow : 0 0 2px #FCC5BA;
         }
       }
     }
 
     @media (max-width: 500px) {
-      position: fixed;
-      left: 0;
-      z-index: 1;
+      position : fixed;
+      left : 0;
+      z-index : 1;
     }
   }
 
   main {
-    flex: 1;
-    height: 100%;
-    max-height: 100%;
-    overflow: auto;
+    flex : 1;
+    height : 100%;
+    max-height : 100%;
+    overflow : auto;
+    margin-left : .5em;
   }
 }
+
 </style>
