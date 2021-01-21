@@ -1,5 +1,5 @@
 <demo>
-    示例 4
+    示例 4 使用html片段
 </demo>
 <template>
   <Button @click="showToast">使用html片段</Button>

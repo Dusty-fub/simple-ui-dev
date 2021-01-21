@@ -1,5 +1,5 @@
 <demo>
-    示例 6
+    示例 6 弹框出现位置
 </demo>
 <template>
   <Button @click="showToast1">右上角</Button>
@@ -24,25 +24,25 @@ export default {
     const { proxy } = getCurrentInstance();
     const showToast1 = () => {
       proxy.$toast({
-        msg: "手动关闭",
+        msg: "右上",
         position: "top-right",
       });
     };
     const showToast2 = () => {
       proxy.$toast({
-        msg: "手动关闭",
+        msg: "右下",
         position: "bottom-right",
       });
     };
     const showToast3 = () => {
       proxy.$toast({
-        msg: "手动关闭",
+        msg: "左上",
         position: "top-left",
       });
     };
     const showToast4 = () => {
       proxy.$toast({
-        msg: "手动关闭",
+        msg: "左下",
         position: "bottom-left",
       });
     };

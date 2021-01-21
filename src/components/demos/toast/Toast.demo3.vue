@@ -1,5 +1,5 @@
 <demo>
-    示例 3
+    示例 3 控制弹框内容局中
 </demo>
 <template>
   <Button @click="showToast">居中</Button>

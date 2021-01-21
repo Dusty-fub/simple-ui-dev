@@ -1,5 +1,5 @@
 <demo>
-    示例 2
+    示例 2 弹框类型
 </demo>
 <template>
   <Button @click="showToast1">成功</Button>
@@ -10,7 +10,9 @@
 
 <script lang="ts">
 /**
- *
+ *  参数：type
+ *  类型：String
+ *  可选值：'success'、'tip'、'warning'、'error'
  */
 
 import Button from "/src/lib/Button.vue";

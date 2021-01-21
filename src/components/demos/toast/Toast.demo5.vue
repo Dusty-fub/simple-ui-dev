@@ -1,5 +1,5 @@
 <demo>
-    示例 5
+    示例 5 用户手动关闭
 </demo>
 <template>
   <Button @click="showToast">手动关闭</Button>
@@ -22,6 +22,7 @@ export default {
       proxy.$toast({
         msg: "手动关闭",
         showClose: true,
+        autoCloseSeconds: false,
       });
     };
 

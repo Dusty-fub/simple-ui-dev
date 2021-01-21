@@ -1,26 +1,38 @@
 <template>
-  <div class="gulu-toast" :class="classes">
+  <div
+    class="gulu-toast"
+    :class="classes"
+  >
     <span class="iconWrap">
-      <svg class="icon" aria-hidden="true">
+      <svg
+        class="icon"
+        aria-hidden="true"
+      >
         <use :xlink:href="`#icon-${type}`"></use>
       </svg>
     </span>
-    <span v-if="dangerouslyUseHTMLString" ref="htmlMsg"> </span>
+    <span
+      v-if="dangerouslyUseHTMLString"
+      ref="htmlMsg"
+    > </span>
     <span v-else>
       {{ msg }}
     </span>
-    <span v-if="showClose" class="closeBtn" @click="userClose">
-      <svg class="icon" aria-hidden="true">
+    <span
+      v-if="showClose"
+      class="closeBtn"
+      @click="userClose"
+    >
+      <svg
+        class="icon"
+        aria-hidden="true"
+      >
         <use :xlink:href="`#icon-close`"></use>
       </svg>
     </span>
   </div>
 </template>
 <script lang="ts">
-/**
- * title ?
- */
-
 import "../svg.js";
 import { getCurrentInstance, onMounted, onUnmounted, reactive, ref } from "vue";
 export default {
@@ -72,33 +84,35 @@ export default {
 
     const htmlMsg = ref<HTMLSpanElement>();
 
-    let isAutoClose = !!props["autoCloseSeconds"];
-
     onMounted(() => {
       if (props["dangerouslyUseHTMLString"]) {
         htmlMsg.value.innerHTML = props["msg"];
       }
 
-      setTimeout(() => {
-        classes[`gulu-toast-${props["field"]["position"]}-fade`] = true;
-      }, props["autoCloseSeconds"] * 1000 - 300);
+      if (props["autoCloseSeconds"] !== false) {
+        setTimeout(() => {
+          classes[`gulu-toast-${props["field"]["position"]}-fade`] = true;
+        }, props["autoCloseSeconds"] * 1000 - 300);
+      }
 
       exeAutoClose();
     });
 
+    let param;
+
     const exeAutoClose = () => {
       if (props["autoCloseSeconds"]) {
-        setTimeout(() => {
+        param = setTimeout(() => {
           close();
         }, props["autoCloseSeconds"] * 1000);
       }
     };
     const userClose = () => {
       close();
-      isAutoClose = false;
     };
     const close = () => {
-      isAutoClose && ctx.emit("close");
+      ctx.emit("close");
+      clearTimeout(param);
     };
     return { classes, htmlMsg, userClose };
   },
