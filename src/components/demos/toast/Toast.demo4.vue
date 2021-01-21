@@ -15,9 +15,9 @@ import { getCurrentInstance } from "vue";
 export default {
   components: { Button },
   setup(props, ctx) {
-    const instance = getCurrentInstance();
+    const { proxy } = getCurrentInstance();
     const showToast = () => {
-      instance.ctx.$toast({
+      proxy.$toast({
         msg: "<strong>这是 <i>HTML</i> 片段</strong>",
         dangerouslyUseHTMLString: true,
       });
@@ -27,5 +27,3 @@ export default {
   },
 };
 </script>
-
-<style lang="ts" scoped></style>

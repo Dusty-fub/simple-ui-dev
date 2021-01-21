@@ -17,9 +17,9 @@ import { getCurrentInstance } from "vue";
 export default {
   components: { Button },
   setup(props, ctx) {
-    const instance = getCurrentInstance();
+    const { proxy } = getCurrentInstance();
     const showToast = () => {
-      instance.ctx.$toast({
+      proxy.$toast({
         msg: "手动关闭",
         showClose: true,
       });
@@ -30,4 +30,3 @@ export default {
 };
 </script>
 
-<style lang="ts" scoped></style>

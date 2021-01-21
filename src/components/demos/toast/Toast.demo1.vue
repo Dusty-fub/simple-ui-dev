@@ -24,20 +24,19 @@ import { getCurrentInstance } from "vue";
 export default {
   components: { Button },
   setup(props, ctx) {
-    const instance = getCurrentInstance();
+    const { proxy } = getCurrentInstance();
     const showToast1 = () => {
-      instance.ctx.$toast("这这是息提示这是一条消示");
+      proxy.$toast("这是一条消示");
     };
     const showToast2 = () => {
-      instance.ctx.$toast({
-        msg: "这这是息提示这是一条消示",
+      proxy.$toast({
+        msg: "这是一条消示",
         position: "bottom",
       });
     };
-
     const showToast3 = () => {
-      instance.ctx.$toast({
-        msg: "这这是息提示这是一条消示",
+      proxy.$toast({
+        msg: "这是一条消示",
         position: "bottom",
         autoCloseSeconds: 1,
       });
@@ -47,5 +46,3 @@ export default {
   },
 };
 </script>
-
-<style lang="ts" scoped></style>
